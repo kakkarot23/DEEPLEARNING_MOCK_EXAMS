@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHATECH Written Examination - Set 6</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:#f4f6f9;
+padding:20px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 0 15px rgba(0,0,0,0.15);
+}
+
+.header{
+background:#0d6efd;
+color:white;
+padding:25px;
+border-radius:10px;
+text-align:center;
+margin-bottom:20px;
+}
+
+.header h1{
+margin-bottom:10px;
+}
+
+.student-box{
+margin-bottom:20px;
+}
+
+.student-box label{
+font-weight:bold;
+display:block;
+margin-bottom:5px;
+}
+
+.student-box input{
+width:100%;
+padding:12px;
+font-size:16px;
+border:1px solid #ccc;
+border-radius:6px;
+}
+
+.question{
+background:#fafafa;
+border-left:5px solid #0d6efd;
+padding:15px;
+margin-top:15px;
+border-radius:8px;
+}
+
+.question h3{
+margin-bottom:10px;
+color:#003366;
+}
+
+textarea{
+width:100%;
+min-height:120px;
+padding:10px;
+font-size:15px;
+border:1px solid #ccc;
+border-radius:6px;
+resize:vertical;
+}
+
+.btn-area{
+text-align:center;
+margin-top:30px;
+}
+
+button{
+padding:15px 40px;
+font-size:18px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+color:white;
+background:#28a745;
+font-weight:bold;
+}
+
+button:hover{
+background:#1e7e34;
+}
+
+.footer{
+margin-top:30px;
+text-align:center;
+color:#666;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<h1>SHATECH WRITTEN EXAMINATION</h1>
+<h2>SET 6 - MACHINE LEARNING BASICS</h2>
+<p>Answer all questions. Click Submit & Download PDF after completion.</p>
+</div>
+
+<div class="student-box">
+<label>Student Name</label>
+<input type="text" id="studentName">
+</div>
+
+<div class="student-box">
+<label>Register Number</label>
+<input type="text" id="regNo">
+</div>
+
+<!-- QUESTIONS -->
+
+<script>
+
+const questions = [
+
+"Define Machine Learning.",
+"Explain the Machine Learning Framework.",
+"What are the three essential components of every ML system?",
+"Explain Task (T) with example.",
+"Explain Experience (E) with example.",
+"Explain Performance (P) with example.",
+"What is Classification?",
+"Explain Regression with example.",
+"What is Transcription?",
+"What is Translation in Machine Learning?",
+"What is Anomaly Detection?",
+"Explain Synthesis and Sampling.",
+"What is Imputation?",
+"Explain Denoising.",
+"What is Density Estimation?",
+"What is Supervised Learning?",
+"Characteristics of Supervised Learning.",
+"Examples of Supervised Learning.",
+"What is Unsupervised Learning?",
+"Characteristics of Unsupervised Learning.",
+"Compare Supervised and Unsupervised Learning.",
+"What is Generalization?",
+"Define Capacity.",
+"What is Hypothesis Space?",
+"What is Underfitting?",
+"Causes of Underfitting.",
+"Symptoms of Underfitting.",
+"What is Overfitting?",
+"Causes of Overfitting.",
+"Symptoms of Overfitting.",
+"Explain Capacity Error Relationship.",
+"Explain Polynomial Regression Example.",
+"What is Representational Capacity?",
+"What is Effective Capacity?",
+"What are Non Parametric Models?",
+"Explain k-Nearest Neighbors.",
+"What is Bayes Error?",
+"State No Free Lunch Theorem.",
+"Practical implications of No Free Lunch Theorem.",
+"What is Regularization?",
+"Explain L2 Regularization.",
+"Explain L1 Regularization.",
+"What is Dropout?",
+"Explain Early Stopping.",
+"What is Data Augmentation?",
+"What are Hyperparameters?",
+"Explain Training Validation and Test Sets.",
+"What is Cross Validation?",
+"Explain Bias Variance Tradeoff.",
+"Explain MLE MAP and Bayesian Statistics."
+
+];
+
+document.write('<div id="questionContainer"></div>');
+
+</script>
+
+<div id="questionContainer"></div>
+
+<div class="btn-area">
+<button onclick="downloadPDF()">
+Submit & Download PDF
+</button>
+</div>
+
+<div class="footer">
+SHATECH Examination System
+</div>
+
+</div>
+
+<script>
+
+const container=document.getElementById("questionContainer");
+
+questions.forEach((q,index)=>{
+
+container.innerHTML += `
+<div class="question">
+
+<h3 id="questionText${index+1}">
+Q${index+1}. ${q}
+</h3>
+
+<textarea
+id="q${index+1}"
+placeholder="Write your answer here..."
+onkeyup="saveData()"
+></textarea>
+
+</div>
+`;
+
+});
+
+function saveData(){
+
+localStorage.setItem(
+"shatech_name",
+document.getElementById("studentName").value
+);
+
+localStorage.setItem(
+"shatech_reg",
+document.getElementById("regNo").value
+);
+
+for(let i=1;i<=50;i++){
+
+let val=document.getElementById("q"+i).value;
+
+localStorage.setItem(
+"answer_"+i,
+val
+);
+
+}
+
+}
+
+window.onload=function(){
+
+document.getElementById("studentName").value=
+localStorage.getItem("shatech_name") || "";
+
+document.getElementById("regNo").value=
+localStorage.getItem("shatech_reg") || "";
+
+for(let i=1;i<=50;i++){
+
+let saved=
+localStorage.getItem("answer_"+i);
+
+if(saved){
+
+document.getElementById("q"+i).value=saved;
+
+}
+
+}
+
+}
+
+async function downloadPDF(){
+
+saveData();
+
+const { jsPDF } = window.jspdf;
+
+let doc = new jsPDF();
+
+let y=20;
+
+let name=
+document.getElementById("studentName").value;
+
+let reg=
+document.getElementById("regNo").value;
+
+doc.setFontSize(18);
+doc.text("SHATECH WRITTEN EXAMINATION",20,y);
+
+y+=10;
+
+doc.setFontSize(12);
+doc.text("Student Name: "+name,20,y);
+
+y+=8;
+
+doc.text("Register Number: "+reg,20,y);
+
+y+=15;
+
+for(let i=1;i<=50;i++){
+
+let question=
+document.getElementById(
+"questionText"+i
+).innerText;
+
+let answer=
+document.getElementById(
+"q"+i
+).value;
+
+if(y>250){
+
+doc.addPage();
+y=20;
+
+}
+
+doc.setFontSize(11);
+
+let qLines=
+doc.splitTextToSize(
+question,
+180
+);
+
+doc.text(qLines,10,y);
+
+y+=qLines.length*6;
+
+let aLines=
+doc.splitTextToSize(
+"Answer: "+answer,
+180
+);
+
+doc.text(aLines,15,y);
+
+y+=aLines.length*6+10;
+
+}
+
+doc.save("SHATECH_SET6_ANSWER_SHEET.pdf");
+
+}
+
+</script>
+
+</body>
+</html>
