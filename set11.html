@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SHATECH Written Examination - Chapter 6 RNN</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+
+body{
+    margin:0;
+    padding:0;
+    background:#f4f6f9;
+    font-family:Arial,sans-serif;
+}
+
+.header{
+    background:#002b5c;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+.header h1{
+    margin:0;
+}
+
+.container{
+    width:95%;
+    max-width:1200px;
+    margin:auto;
+    margin-top:20px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+.info{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+input{
+    padding:10px;
+    width:100%;
+    font-size:16px;
+}
+
+.question{
+    margin-top:20px;
+    background:#fafafa;
+    padding:15px;
+    border-left:5px solid #007bff;
+    border-radius:5px;
+}
+
+.question h3{
+    margin:0 0 10px;
+}
+
+textarea{
+    width:100%;
+    min-height:120px;
+    resize:vertical;
+    padding:10px;
+    font-size:15px;
+}
+
+.btns{
+    text-align:center;
+    margin-top:30px;
+}
+
+button{
+    padding:15px 30px;
+    border:none;
+    color:white;
+    font-size:18px;
+    border-radius:8px;
+    cursor:pointer;
+    margin:10px;
+}
+
+.save{
+    background:#17a2b8;
+}
+
+.submit{
+    background:#28a745;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#555;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<h1>SHATECH WRITTEN EXAMINATION</h1>
+<h2>Chapter 6 - Recurrent Neural Networks (RNN)</h2>
+</div>
+
+<div class="container">
+
+<div class="info">
+<div>
+<label><b>Student Name</b></label>
+<input type="text" id="name">
+</div>
+
+<div>
+<label><b>Register Number</b></label>
+<input type="text" id="reg">
+</div>
+</div>
+
+<div id="questions"></div>
+
+<div class="btns">
+<button class="save" onclick="saveAnswers()">Save Answers</button>
+<button class="submit" onclick="generatePDF()">Submit & Download PDF</button>
+</div>
+
+</div>
+
+<div class="footer">
+SHATECH Examination Portal
+</div>
+
+<script>
+
+const questions=[
+
+"Define Recurrent Neural Networks.",
+"What is a dynamical system in RNN?",
+"Write the recurrent state equation.",
+"What is unfolding in computational graphs?",
+"Why are parameters shared across time steps?",
+"What are variable length sequences?",
+"Explain the architecture of a basic RNN.",
+"Define hidden state.",
+"Define input vector in RNN.",
+"What is forward propagation in RNN?",
+"Write the equation for hidden activation.",
+"Write the equation for output layer.",
+"What is the role of matrix U?",
+"What is the role of matrix W?",
+"What is the role of matrix V?",
+"What are bias parameters in RNN?",
+"Define softmax function.",
+"Define loss function in RNN.",
+"What is sequence modeling?",
+"Explain Backpropagation Through Time.",
+"Why is unfolding required in BPTT?",
+"Write the gradient equation for hidden state.",
+"What are Jacobian matrices?",
+"What causes vanishing gradients?",
+"What causes exploding gradients?",
+"Define spectral radius.",
+"What happens when spectral radius > 1?",
+"What happens when spectral radius < 1?",
+"What happens when spectral radius = 1?",
+"Explain teacher forcing.",
+"Advantages of teacher forcing.",
+"Disadvantages of teacher forcing.",
+"What is exposure bias?",
+"What is curriculum learning?",
+"Explain Bidirectional RNN.",
+"Advantages of Bidirectional RNN.",
+"What is Encoder-Decoder architecture?",
+"What is a context vector?",
+"Limitation of fixed context vectors.",
+"Explain Attention Mechanism.",
+"What are attention weights?",
+"Benefits of Attention.",
+"Why was LSTM introduced?",
+"Explain LSTM cell state.",
+"Explain Forget Gate.",
+"Explain Input Gate.",
+"Explain Output Gate.",
+"What is GRU?",
+"Difference between GRU and LSTM.",
+"Explain Gradient Clipping."
+];
+
+const container=document.getElementById("questions");
+
+questions.forEach((q,index)=>{
+
+container.innerHTML+=`
+
+<div class="question">
+<h3>Q${index+1}. ${q}</h3>
+
+<textarea
+id="ans${index+1}"
+placeholder="Write your answer here..."
+></textarea>
+
+</div>
+
+`;
+
+});
+
+function saveAnswers(){
+
+localStorage.setItem("studentName",
+document.getElementById("name").value);
+
+localStorage.setItem("studentReg",
+document.getElementById("reg").value);
+
+for(let i=1;i<=questions.length;i++){
+
+localStorage.setItem(
+"ans"+i,
+document.getElementById("ans"+i).value
+);
+
+}
+
+alert("Answers Saved Successfully");
+
+}
+
+window.onload=function(){
+
+document.getElementById("name").value=
+localStorage.getItem("studentName")||"";
+
+document.getElementById("reg").value=
+localStorage.getItem("studentReg")||"";
+
+for(let i=1;i<=questions.length;i++){
+
+document.getElementById("ans"+i).value=
+localStorage.getItem("ans"+i)||"";
+
+}
+
+};
+
+async function generatePDF(){
+
+const { jsPDF } = window.jspdf;
+
+let doc=new jsPDF();
+
+let y=15;
+
+doc.setFontSize(16);
+doc.text("SHATECH WRITTEN EXAMINATION",10,y);
+
+y+=10;
+
+doc.setFontSize(12);
+
+doc.text(
+"Student: "+document.getElementById("name").value,
+10,y);
+
+y+=8;
+
+doc.text(
+"Register No: "+document.getElementById("reg").value,
+10,y);
+
+y+=10;
+
+for(let i=0;i<questions.length;i++){
+
+let answer=
+document.getElementById("ans"+(i+1)).value;
+
+let content=
+"Q"+(i+1)+": "+questions[i]+"\nAnswer: "+answer;
+
+let lines=
+doc.splitTextToSize(content,180);
+
+if(y>260){
+
+doc.addPage();
+y=15;
+
+}
+
+doc.text(lines,10,y);
+
+y+=lines.length*7+5;
+
+}
+
+doc.save("SHATECH_RNN_Exam_AnswerSheet.pdf");
+
+}
+
+</script>
+
+</body>
+</html>
