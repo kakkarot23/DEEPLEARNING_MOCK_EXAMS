@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHATECH - Regularization Written Examination</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f4f6f9;
+}
+
+.header{
+    background:#0d6efd;
+    color:white;
+    padding:25px;
+    text-align:center;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+.student-box{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.student-box input{
+    width:100%;
+    padding:12px;
+    font-size:16px;
+}
+
+.question{
+    background:white;
+    margin-bottom:15px;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.question h3{
+    color:#003366;
+}
+
+textarea{
+    width:100%;
+    height:120px;
+    padding:10px;
+    font-size:15px;
+    resize:vertical;
+}
+
+.submit-btn{
+    background:#28a745;
+    color:white;
+    border:none;
+    padding:15px 40px;
+    font-size:18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.submit-btn:hover{
+    background:#1e7e34;
+}
+
+.footer{
+    text-align:center;
+    margin:30px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>SHATECH WRITTEN EXAMINATION</h1>
+<h2>Chapter 3 - REGULARIZATION</h2>
+<h3>Total Questions : 50</h3>
+</div>
+
+<div class="container">
+
+<div class="student-box">
+<label><b>Student Name</b></label>
+<input type="text" id="studentName" placeholder="Enter Student Name">
+</div>
+
+<div id="questions"></div>
+
+<div class="footer">
+<button class="submit-btn" onclick="downloadPDF()">
+Submit & Download PDF
+</button>
+</div>
+
+</div>
+
+<script>
+
+const questions=[
+
+"Define Regularization.",
+"What is the primary goal of regularization?",
+"Differentiate training error and generalization error.",
+"Explain regularization from a Bayesian perspective.",
+"What prior distribution corresponds to L2 regularization?",
+"What prior distribution corresponds to L1 regularization?",
+"Write the formula for L2 regularization.",
+"What is Weight Decay?",
+"How does L2 regularization affect model weights?",
+"Explain the bias-variance effect of L2 regularization.",
+"Why is L2 regularization equivalent to a Gaussian prior?",
+"Write the normal equation for linear regression with L2 regularization.",
+"What is L1 regularization?",
+"Write the formula for L1 regularization.",
+"How does L1 regularization affect model parameters?",
+"What is sparsity?",
+"Why is L1 useful for feature selection?",
+"Why does L1 regularization produce sparse solutions?",
+"Compare L1 and L2 regularization.",
+"What is the gradient behavior in L1 regularization?",
+"What is the gradient behavior in L2 regularization?",
+"Define Dropout.",
+"What is the purpose of dropout?",
+"How does dropout work during training?",
+"What happens during testing after dropout training?",
+"What is the weight scaling inference rule?",
+"Why does dropout prevent co-adaptation?",
+"How does dropout approximate ensemble learning?",
+"What are redundant representations?",
+"Explain Early Stopping.",
+"Describe the Early Stopping algorithm.",
+"What is the role of the validation set in Early Stopping?",
+"Why does Early Stopping reduce overfitting?",
+"How is Early Stopping related to L2 regularization?",
+"What is Dataset Augmentation?",
+"Why is Dataset Augmentation useful?",
+"List common image augmentation techniques.",
+"How does augmentation increase effective dataset size?",
+"What is Noise Robustness?",
+"What is the effect of adding noise to inputs?",
+"What is the effect of adding noise to weights?",
+"Define Parameter Sharing.",
+"Give an example of parameter sharing.",
+"What are the benefits of parameter sharing?",
+"What is translation equivariance?",
+"Define Sparse Representations.",
+"What is the purpose of L1 penalty on hidden units?",
+"What are Bagging and Ensemble Methods?",
+"Explain Multi-Task Learning.",
+"What is Adversarial Training and why is it important?"
+
+];
+
+const container=document.getElementById("questions");
+
+questions.forEach((q,index)=>{
+
+container.innerHTML+=`
+<div class="question">
+<h3>Q${index+1}. ${q}</h3>
+<textarea id="ans${index+1}"
+placeholder="Write your answer here..."
+onkeyup="saveAnswer(${index+1})"></textarea>
+</div>
+`;
+
+});
+
+window.onload=function(){
+
+document.getElementById("studentName").value=
+localStorage.getItem("studentName") || "";
+
+for(let i=1;i<=questions.length;i++){
+
+let val=localStorage.getItem("ans"+i);
+
+if(val){
+document.getElementById("ans"+i).value=val;
+}
+
+}
+
+};
+
+document.getElementById("studentName")
+.addEventListener("keyup",function(){
+
+localStorage.setItem(
+"studentName",
+this.value
+);
+
+});
+
+function saveAnswer(id){
+
+localStorage.setItem(
+"ans"+id,
+document.getElementById("ans"+id).value
+);
+
+}
+
+async function downloadPDF(){
+
+const { jsPDF } = window.jspdf;
+
+const doc = new jsPDF();
+
+let y=20;
+
+doc.setFontSize(18);
+doc.text("SHATECH WRITTEN EXAMINATION",20,y);
+
+y+=10;
+
+doc.setFontSize(14);
+doc.text("Chapter 3 - REGULARIZATION",20,y);
+
+y+=10;
+
+doc.text(
+"Student: "+
+document.getElementById("studentName").value,
+20,
+y
+);
+
+y+=15;
+
+for(let i=0;i<questions.length;i++){
+
+let answer=
+document.getElementById(
+"ans"+(i+1)
+).value;
+
+let block=
+"Q"+(i+1)+": "+questions[i];
+
+let lines=
+doc.splitTextToSize(block,170);
+
+doc.text(lines,10,y);
+
+y+=lines.length*7;
+
+let ansLines=
+doc.splitTextToSize(
+"Answer: "+answer,
+170
+);
+
+doc.text(ansLines,10,y);
+
+y+=ansLines.length*7+10;
+
+if(y>260){
+
+doc.addPage();
+y=20;
+
+}
+
+}
+
+doc.save(
+(document.getElementById("studentName").value || "Student")
++"_Regularization_Exam.pdf"
+);
+
+}
+
+</script>
+
+</body>
+</html>
