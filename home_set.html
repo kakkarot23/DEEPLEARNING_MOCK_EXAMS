@@ -1,113 +1,284 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SHATECH Examination Portal</title>
 
 <style>
 
-body{
-font-family:Arial;
-background:#f4f6f9;
-margin:0;
-padding:0;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
 }
 
-header{
-background:#002147;
-color:white;
-padding:20px;
-text-align:center;
+body{
+    background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);
+    min-height:100vh;
+}
+
+.header{
+    text-align:center;
+    color:white;
+    padding:40px 20px;
+}
+
+.header h1{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.header p{
+    font-size:18px;
+    opacity:.9;
 }
 
 .container{
-width:500px;
-margin:60px auto;
-background:white;
-padding:30px;
-border-radius:10px;
-box-shadow:0 0 10px gray;
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+.portal-card{
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 10px 40px rgba(0,0,0,.3);
+}
+
+.portal-card h2{
+    color:white;
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.input-group{
+    margin-bottom:20px;
+}
+
+label{
+    color:white;
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
 }
 
 input,select{
-width:100%;
-padding:12px;
-margin-top:10px;
-margin-bottom:20px;
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
 }
 
-button{
-width:100%;
-padding:15px;
-background:#007bff;
-color:white;
-border:none;
-font-size:18px;
-cursor:pointer;
+.exam-info{
+    margin-top:25px;
+    background:white;
+    border-radius:15px;
+    padding:20px;
 }
 
-button:hover{
-background:#0056b3;
+.exam-info h3{
+    color:#003366;
+    margin-bottom:10px;
+}
+
+.exam-info ul{
+    margin-left:20px;
+}
+
+.exam-info li{
+    padding:6px 0;
+}
+
+.start-btn{
+    width:100%;
+    margin-top:25px;
+    padding:16px;
+    border:none;
+    border-radius:12px;
+    background:#10b981;
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.start-btn:hover{
+    transform:translateY(-2px);
+    background:#059669;
+}
+
+.sets-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+    margin-top:25px;
+}
+
+.box{
+    background:white;
+    padding:15px;
+    border-radius:12px;
+    text-align:center;
+}
+
+.box h4{
+    color:#003366;
+    margin-bottom:5px;
+}
+
+.footer{
+    text-align:center;
+    color:white;
+    padding:25px;
+    margin-top:30px;
 }
 
 </style>
-
 </head>
+
 <body>
 
-<header>
+<div class="header">
 <h1>SHATECH ONLINE EXAMINATION PORTAL</h1>
-</header>
+<p>Machine Learning & Deep Learning Examination System</p>
+</div>
 
 <div class="container">
 
-<h2>Student Login</h2>
+<div class="portal-card">
 
-<label>Name</label>
-<input type="text" id="name">
+<h2>Student Examination Login</h2>
 
+<div class="input-group">
+<label>Student Name</label>
+<input type="text" id="name" placeholder="Enter Student Name">
+</div>
+
+<div class="input-group">
+<label>Register Number</label>
+<input type="text" id="reg" placeholder="Enter Register Number">
+</div>
+
+<div class="input-group">
 <label>Select Examination Set</label>
 
 <select id="examSet">
 
-<option value="">Select Set</option>
+<option value="">Choose Examination Set</option>
 
-<option value="set1.html">SET 1</option>
-<option value="set2.html">SET 2</option>
-<option value="set3.html">SET 3</option>
-<option value="set4.html">SET 4</option>
-<option value="set5.html">SET 5</option>
-<option value="set6.html">SET 6</option>
-<option value="set7.html">SET 7</option>
-<option value="set8.html">SET 8</option>
-<option value="set9.html">SET 9</option>
-<option value="set10.html">SET 10</option>
+<optgroup label="MCQ EXAMINATION">
+
+<option value="set1.html">SET 1 - MCQ</option>
+<option value="set2.html">SET 2 - MCQ</option>
+<option value="set3.html">SET 3 - MCQ</option>
+<option value="set4.html">SET 4 - MCQ</option>
+<option value="set5.html">SET 5 - MCQ</option>
+
+</optgroup>
+
+<optgroup label="SHORT ANSWER EXAMINATION">
+
+<option value="set6.html">SET 6 - One Line</option>
+<option value="set7.html">SET 7 - One Line</option>
+<option value="set8.html">SET 8 - One Line</option>
+<option value="set9.html">SET 9 - One Line</option>
+<option value="set10.html">SET 10 - One Line</option>
+<option value="set11.html">SET 11 - One Line</option>
+
+</optgroup>
+
+<optgroup label="LONG ANSWER EXAMINATION">
+
+<option value="set12.html">SET 12 - Long Answer</option>
+<option value="set13.html">SET 13 - Long Answer</option>
+<option value="set14.html">SET 14 - Long Answer</option>
+<option value="set15.html">SET 15 - Long Answer</option>
+<option value="set16.html">SET 16 - Long Answer</option>
+<option value="set17.html">SET 17 - Long Answer</option>
+<option value="set18.html">SET 18 - Long Answer</option>
+
+</optgroup>
 
 </select>
 
-<button onclick="startExam()">
-Start Examination
+</div>
+
+<button class="start-btn" onclick="startExam()">
+🚀 Start Examination
 </button>
 
+<div class="exam-info">
+
+<h3>Examination Categories</h3>
+
+<ul>
+<li><b>SET 1 - SET 5</b> → Multiple Choice Questions (MCQ)</li>
+<li><b>SET 6 - SET 11</b> → Short Answer Questions</li>
+<li><b>SET 12 - SET 18</b> → Long Answer Questions</li>
+</ul>
+
+</div>
+
+<div class="sets-grid">
+
+<div class="box">
+<h4>MCQ Sets</h4>
+<p>Set 1 - Set 5</p>
+</div>
+
+<div class="box">
+<h4>Short Answer</h4>
+<p>Set 6 - Set 11</p>
+</div>
+
+<div class="box">
+<h4>Long Answer</h4>
+<p>Set 12 - Set 18</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 SHATECH Examination Portal | Machine Learning & Deep Learning Assessment System
 </div>
 
 <script>
 
 function startExam(){
 
-let name=document.getElementById("name").value;
+let name=document.getElementById("name").value.trim();
+let reg=document.getElementById("reg").value.trim();
 let set=document.getElementById("examSet").value;
 
-if(name==""){
-alert("Enter Student Name");
+if(name===""){
+alert("Please enter Student Name");
 return;
 }
 
-if(set==""){
-alert("Select Exam Set");
+if(reg===""){
+alert("Please enter Register Number");
+return;
+}
+
+if(set===""){
+alert("Please select Examination Set");
 return;
 }
 
 localStorage.setItem("studentName",name);
+localStorage.setItem("registerNumber",reg);
 
 window.location.href=set;
 
