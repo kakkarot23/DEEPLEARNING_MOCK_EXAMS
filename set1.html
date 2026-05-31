@@ -1,13 +1,15 @@
+```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SHATECH MCQ Examination - Set 1</title>
 
 <style>
 
 body{
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
     background:#f4f6f9;
     margin:0;
     padding:20px;
@@ -38,10 +40,11 @@ h1{
 }
 
 .question{
-    margin-top:25px;
+    margin-top:20px;
     padding:15px;
     background:#fafafa;
     border-left:5px solid #007bff;
+    border-radius:5px;
 }
 
 .question p{
@@ -105,130 +108,10 @@ h1{
 <input type="text" id="studentNameInput" placeholder="Enter your name">
 </div>
 
-<!-- Q1 -->
-<div class="question">
-<p>1. What are the three components of a Machine Learning system?</p>
-<div class="option"><input type="radio" name="q1" value="a"> Data, Model, GPU</div>
-<div class="option"><input type="radio" name="q1" value="b"> Task, Experience, Performance</div>
-<div class="option"><input type="radio" name="q1" value="c"> Input, Output, Label</div>
-<div class="option"><input type="radio" name="q1" value="d"> Training, Testing, Validation</div>
-</div>
-
-<!-- Q2 -->
-<div class="question">
-<p>2. Which learning method uses labeled data?</p>
-<div class="option"><input type="radio" name="q2" value="a"> Unsupervised</div>
-<div class="option"><input type="radio" name="q2" value="b"> Reinforcement</div>
-<div class="option"><input type="radio" name="q2" value="c"> Supervised</div>
-<div class="option"><input type="radio" name="q2" value="d"> Clustering</div>
-</div>
-
-<!-- Q3 -->
-<div class="question">
-<p>3. Which task predicts numerical values?</p>
-<div class="option"><input type="radio" name="q3" value="a"> Classification</div>
-<div class="option"><input type="radio" name="q3" value="b"> Regression</div>
-<div class="option"><input type="radio" name="q3" value="c"> Clustering</div>
-<div class="option"><input type="radio" name="q3" value="d"> Translation</div>
-</div>
-
-<!-- Q4 -->
-<div class="question">
-<p>4. Credit card fraud detection is an example of:</p>
-<div class="option"><input type="radio" name="q4" value="a"> Classification</div>
-<div class="option"><input type="radio" name="q4" value="b"> Translation</div>
-<div class="option"><input type="radio" name="q4" value="c"> Anomaly Detection</div>
-<div class="option"><input type="radio" name="q4" value="d"> Sampling</div>
-</div>
-
-<!-- Q5 -->
-<div class="question">
-<p>5. Which task fills missing values?</p>
-<div class="option"><input type="radio" name="q5" value="a"> Denoising</div>
-<div class="option"><input type="radio" name="q5" value="b"> Imputation</div>
-<div class="option"><input type="radio" name="q5" value="c"> Sampling</div>
-<div class="option"><input type="radio" name="q5" value="d"> Regression</div>
-</div>
-
-<!-- Q6 -->
-<div class="question">
-<p>6. Which learning type discovers hidden patterns?</p>
-<div class="option"><input type="radio" name="q6" value="a"> Supervised</div>
-<div class="option"><input type="radio" name="q6" value="b"> Unsupervised</div>
-<div class="option"><input type="radio" name="q6" value="c"> Reinforcement</div>
-<div class="option"><input type="radio" name="q6" value="d"> Online</div>
-</div>
-
-<!-- Q7 -->
-<div class="question">
-<p>7. Which model stores all training examples?</p>
-<div class="option"><input type="radio" name="q7" value="a"> Linear Regression</div>
-<div class="option"><input type="radio" name="q7" value="b"> CNN</div>
-<div class="option"><input type="radio" name="q7" value="c"> k-NN</div>
-<div class="option"><input type="radio" name="q7" value="d"> RNN</div>
-</div>
-
-<!-- Q8 -->
-<div class="question">
-<p>8. High training and high test error indicate:</p>
-<div class="option"><input type="radio" name="q8" value="a"> Overfitting</div>
-<div class="option"><input type="radio" name="q8" value="b"> Underfitting</div>
-<div class="option"><input type="radio" name="q8" value="c"> Generalization</div>
-<div class="option"><input type="radio" name="q8" value="d"> Regularization</div>
-</div>
-
-<!-- Q9 -->
-<div class="question">
-<p>9. Very low training error but high test error indicates:</p>
-<div class="option"><input type="radio" name="q9" value="a"> Underfitting</div>
-<div class="option"><input type="radio" name="q9" value="b"> Overfitting</div>
-<div class="option"><input type="radio" name="q9" value="c"> Optimization</div>
-<div class="option"><input type="radio" name="q9" value="d"> Validation</div>
-</div>
-
-<!-- Q10 -->
-<div class="question">
-<p>10. Which theorem states no algorithm is best for every problem?</p>
-<div class="option"><input type="radio" name="q10" value="a"> Bayes Theorem</div>
-<div class="option"><input type="radio" name="q10" value="b"> Central Limit Theorem</div>
-<div class="option"><input type="radio" name="q10" value="c"> No Free Lunch Theorem</div>
-<div class="option"><input type="radio" name="q10" value="d"> Pythagoras Theorem</div>
-</div>
-
-<!-- Q11-Q30 -->
-<!-- Continue same pattern -->
-
-<script>
-for(let i=11;i<=30;i++){
-document.write(`
-<div class="question">
-<p>${i}. Machine Learning MCQ Question ${i}</p>
-
-<div class="option">
-<input type="radio" name="q${i}" value="a"> Option A
-</div>
-
-<div class="option">
-<input type="radio" name="q${i}" value="b"> Option B
-</div>
-
-<div class="option">
-<input type="radio" name="q${i}" value="c"> Option C
-</div>
-
-<div class="option">
-<input type="radio" name="q${i}" value="d"> Option D
-</div>
-
-</div>
-`);
-}
-</script>
-
-<hr>
+<div id="questions"></div>
 
 <div style="text-align:center;margin-top:30px;">
-<button onclick="submitExam()" class="submit-btn">
+<button class="submit-btn" onclick="submitExam()">
 Submit Examination
 </button>
 </div>
@@ -265,77 +148,213 @@ Submit Examination
 
 <script>
 
-const answers={
-q1:"b",
-q2:"c",
-q3:"b",
-q4:"c",
-q5:"b",
-q6:"b",
-q7:"c",
-q8:"b",
-q9:"b",
-q10:"c",
-q11:"b",
-q12:"b",
-q13:"c",
-q14:"a",
-q15:"a",
-q16:"b",
-q17:"c",
-q18:"b",
-q19:"a",
-q20:"a",
-q21:"b",
-q22:"c",
-q23:"b",
-q24:"a",
-q25:"c",
-q26:"c",
-q27:"a",
-q28:"b",
-q29:"c",
-q30:"c"
-};
+const questions = [
+
+{
+q:"What are the three components of a Machine Learning system?",
+o:["Data, Model, GPU","Task, Experience, Performance","Input, Output, Label","Training, Testing, Validation"]
+},
+{
+q:"Which learning method uses labeled data?",
+o:["Unsupervised","Reinforcement","Supervised","Clustering"]
+},
+{
+q:"Which task predicts numerical values?",
+o:["Classification","Regression","Clustering","Translation"]
+},
+{
+q:"Credit card fraud detection is an example of:",
+o:["Classification","Translation","Anomaly Detection","Sampling"]
+},
+{
+q:"Which task fills missing values?",
+o:["Denoising","Imputation","Sampling","Regression"]
+},
+{
+q:"Which learning type discovers hidden patterns?",
+o:["Supervised","Unsupervised","Reinforcement","Online"]
+},
+{
+q:"Which model stores all training examples?",
+o:["Linear Regression","CNN","k-NN","RNN"]
+},
+{
+q:"High training and high test error indicate:",
+o:["Overfitting","Underfitting","Generalization","Regularization"]
+},
+{
+q:"Very low training error but high test error indicates:",
+o:["Underfitting","Overfitting","Optimization","Validation"]
+},
+{
+q:"Which theorem states no algorithm is best for every problem?",
+o:["Bayes Theorem","Central Limit Theorem","No Free Lunch Theorem","Pythagoras Theorem"]
+},
+{
+q:"What is the primary goal of Machine Learning?",
+o:["Store data permanently","Learn patterns from data","Increase hardware speed","Replace databases"]
+},
+{
+q:"Which dataset is used to evaluate model performance?",
+o:["Training Set","Test Set","Input Set","Feature Set"]
+},
+{
+q:"Which learning algorithm is commonly used for classification?",
+o:["K-Means","PCA","Logistic Regression","Apriori"]
+},
+{
+q:"What is a feature in Machine Learning?",
+o:["Input variable","Output variable","Error value","Prediction"]
+},
+{
+q:"Which metric is commonly used for classification accuracy?",
+o:["Accuracy","RMSE","MAE","Variance"]
+},
+{
+q:"Which method reduces overfitting?",
+o:["Increasing noise","Regularization","Removing data","Random guessing"]
+},
+{
+q:"Which algorithm belongs to supervised learning?",
+o:["K-Means","PCA","Decision Tree","Association Rule Mining"]
+},
+{
+q:"Which technique groups similar data points?",
+o:["Regression","Clustering","Classification","Prediction"]
+},
+{
+q:"What does AI stand for?",
+o:["Artificial Intelligence","Automated Interface","Algorithm Integration","Artificial Input"]
+},
+{
+q:"Which of the following is a regression problem?",
+o:["House Price Prediction","Spam Detection","Face Recognition","Disease Classification"]
+},
+{
+q:"What is the purpose of training data?",
+o:["Testing model","Learning patterns","Visualization","Storage"]
+},
+{
+q:"Which algorithm is commonly used for clustering?",
+o:["Logistic Regression","Decision Tree","K-Means","Naive Bayes"]
+},
+{
+q:"Which process removes noise from data?",
+o:["Clustering","Denoising","Sampling","Classification"]
+},
+{
+q:"What is the output of a classification model?",
+o:["Category/Class","Continuous Value","Cluster","Feature"]
+},
+{
+q:"Which learning type uses rewards and penalties?",
+o:["Supervised","Unsupervised","Reinforcement","Batch Learning"]
+},
+{
+q:"Which algorithm is used for image classification?",
+o:["K-Means","PCA","CNN","Apriori"]
+},
+{
+q:"What does ML stand for?",
+o:["Machine Learning","Machine Logic","Memory Learning","Modern Learning"]
+},
+{
+q:"Which type of error occurs when the model is too simple?",
+o:["Overfitting","Underfitting","Validation","Sampling"]
+},
+{
+q:"Which model is inspired by the human brain?",
+o:["Linear Regression","Decision Tree","Neural Network","KNN"]
+},
+{
+q:"Which field combines statistics and computer science?",
+o:["Networking","Operating Systems","Machine Learning","Compiler Design"]
+}
+];
+
+const answers = [
+'b','c','b','c','b','b','c','b','b','c',
+'b','b','c','a','a','b','c','b','a','a',
+'b','c','b','a','c','c','a','b','c','c'
+];
+
+let html='';
+
+questions.forEach((item,index)=>{
+
+html += `
+<div class="question">
+
+<p>${index+1}. ${item.q}</p>
+
+<div class="option">
+<input type="radio" name="q${index+1}" value="a"> ${item.o[0]}
+</div>
+
+<div class="option">
+<input type="radio" name="q${index+1}" value="b"> ${item.o[1]}
+</div>
+
+<div class="option">
+<input type="radio" name="q${index+1}" value="c"> ${item.o[2]}
+</div>
+
+<div class="option">
+<input type="radio" name="q${index+1}" value="d"> ${item.o[3]}
+</div>
+
+</div>
+`;
+
+});
+
+document.getElementById("questions").innerHTML = html;
 
 function submitExam(){
 
-let score=0;
+let score = 0;
 
-for(let key in answers){
+for(let i=1;i<=30;i++){
 
-let selected=document.querySelector(
-'input[name="'+key+'"]:checked'
-);
+let selected =
+document.querySelector(`input[name="q${i}"]:checked`);
 
-if(selected && selected.value===answers[key]){
+if(selected && selected.value===answers[i-1]){
 score++;
 }
 }
 
-let percentage=((score/30)*100).toFixed(2);
-let status=score>=15?"PASS":"FAIL";
+let percentage =
+((score/30)*100).toFixed(2);
 
-document.getElementById("studentName").innerHTML=
-document.getElementById("studentNameInput").value;
+let status =
+score>=15 ? "PASS" : "FAIL";
 
-document.getElementById("correct").innerHTML=score;
-document.getElementById("score").innerHTML=score;
-document.getElementById("percentage").innerHTML=percentage;
-document.getElementById("status").innerHTML=status;
+document.getElementById("studentName").innerText =
+document.getElementById("studentNameInput").value || "Not Entered";
 
-document.getElementById("status").className=
-score>=15?"pass":"fail";
+document.getElementById("correct").innerText = score;
+document.getElementById("score").innerText = score;
+document.getElementById("percentage").innerText = percentage;
+
+let statusElement =
+document.getElementById("status");
+
+statusElement.innerText = status;
+statusElement.className =
+score>=15 ? "pass" : "fail";
 
 document.getElementById("resultCard").style.display="block";
 
 window.scrollTo({
 top:document.body.scrollHeight,
-behavior:'smooth'
+behavior:"smooth"
 });
+
 }
 
 </script>
 
 </body>
 </html>
+```
