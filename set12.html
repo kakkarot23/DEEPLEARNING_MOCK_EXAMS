@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SHATECH Formula Examination - ML Basics</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Segoe UI,sans-serif;
+    background:#f4f7fc;
+}
+
+header{
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:20px auto;
+}
+
+.question{
+    background:white;
+    margin-bottom:20px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.question h3{
+    color:#003366;
+}
+
+label{
+    display:block;
+    padding:8px;
+    cursor:pointer;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.result{
+    display:none;
+    margin-top:30px;
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    text-align:center;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.pass{
+    color:green;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.fail{
+    color:red;
+    font-size:24px;
+    font-weight:bold;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+<h1>SHATECH Formula Examination</h1>
+<h2>Machine Learning Basics</h2>
+</header>
+
+<div class="container">
+
+<div id="questions"></div>
+
+<button onclick="submitExam()">
+Submit Examination
+</button>
+
+<div class="result" id="result">
+<h2>Result</h2>
+
+<p><b>Correct:</b> <span id="correct"></span></p>
+<p><b>Wrong:</b> <span id="wrong"></span></p>
+<p><b>Marks:</b> <span id="marks"></span></p>
+<p><b>Percentage:</b> <span id="percentage"></span></p>
+
+<div id="status"></div>
+
+</div>
+
+</div>
+
+<script>
+
+const exam = [
+
+{
+q:"Formula for Mean Squared Error (MSE)?",
+options:[
+"MSE = E[(θ̂−θ)²]",
+"MSE = Bias² + Variance",
+"MSE = E[(θ̂−θ)²] = Bias² + Variance",
+"MSE = θ²"
+],
+answer:2
+},
+
+{
+q:"Formula for Bias?",
+options:[
+"Bias(θ̂)=E[θ̂]−θ",
+"Bias=θ²",
+"Bias=Variance",
+"Bias=MSE"
+],
+answer:0
+},
+
+{
+q:"Formula for Variance?",
+options:[
+"Var(θ̂)=E[θ̂²]−E[θ̂]²",
+"Var=θ²",
+"Var=MSE",
+"Var=Bias²"
+],
+answer:0
+},
+
+{
+q:"Formula for Standard Error?",
+options:[
+"SE=Var",
+"SE=√Var(θ̂)",
+"SE=Bias²",
+"SE=MSE²"
+],
+answer:1
+},
+
+{
+q:"Formula for Sample Mean?",
+options:[
+"μ̂=(1/m)Σx(i)",
+"μ̂=Σx²",
+"μ̂=Var(x)",
+"μ̂=MSE"
+],
+answer:0
+},
+
+{
+q:"Formula for L2 Regularization?",
+options:[
+"J(w)+λ||w||²",
+"J(w)+λ||w||₁",
+"J(w)-λ||w||²",
+"J(w)"
+],
+answer:0
+},
+
+{
+q:"Formula for L1 Regularization?",
+options:[
+"J(w)+λ||w||₁",
+"J(w)+λ||w||²",
+"J(w)-λ||w||₁",
+"J(w)"
+],
+answer:0
+},
+
+{
+q:"Maximum Likelihood Estimation Formula?",
+options:[
+"argmax θ Σ log p(x;θ)",
+"argmin θ Σ log p(x;θ)",
+"argmax θ λ||w||²",
+"argmin θ Bias²"
+],
+answer:0
+},
+
+{
+q:"MAP Estimation Formula?",
+options:[
+"argmax[log p(x|θ)+log p(θ)]",
+"argmin MSE",
+"argmax Variance",
+"argmin Bias"
+],
+answer:0
+},
+
+{
+q:"Conditional MLE Formula?",
+options:[
+"argmax Σ log P(y|x;θ)",
+"argmin Σ log P(y|x)",
+"argmax Bias",
+"argmax Variance"
+],
+answer:0
+},
+
+{
+q:"Linear Regression Formula?",
+options:[
+"ŷ=wᵀx",
+"ŷ=x²",
+"ŷ=w+x",
+"ŷ=softmax(x)"
+],
+answer:0
+},
+
+{
+q:"Sigmoid Formula?",
+options:[
+"σ(a)=1/(1+e⁻ᵃ)",
+"σ(a)=a²",
+"σ(a)=max(0,a)",
+"σ(a)=a"
+],
+answer:0
+},
+
+{
+q:"ReLU Formula?",
+options:[
+"max(0,a)",
+"a²",
+"1/(1+e⁻ᵃ)",
+"softmax(a)"
+],
+answer:0
+},
+
+{
+q:"Softmax Formula?",
+options:[
+"eᵃⁱ / Σeᵃʲ",
+"a²",
+"max(0,a)",
+"1/(1+e⁻ᵃ)"
+],
+answer:0
+},
+
+{
+q:"Chain Rule Formula?",
+options:[
+"∂z/∂x=(∂z/∂y)(∂y/∂x)",
+"∂z=x+y",
+"z=x²",
+"z=y²"
+],
+answer:0
+},
+
+{
+q:"Bayes Rule Formula?",
+options:[
+"Posterior=(Likelihood×Prior)/Evidence",
+"MSE=Bias²+Var",
+"ŷ=wᵀx",
+"σ(a)=1/(1+e⁻ᵃ)"
+],
+answer:0
+},
+
+{
+q:"Sample Variance Formula?",
+options:[
+"(1/m)Σ(x−μ̂)²",
+"(1/m²)Σx",
+"MSE",
+"Bias²"
+],
+answer:0
+},
+
+{
+q:"Unbiased Sample Variance Formula?",
+options:[
+"(1/(m−1))Σ(x−μ̂)²",
+"(1/m)Σx",
+"MSE",
+"Var²"
+],
+answer:0
+},
+
+{
+q:"KL Divergence Formula?",
+options:[
+"DKL(p||q)",
+"Bias²",
+"Variance",
+"MSE"
+],
+answer:0
+},
+
+{
+q:"Weight Decay Objective?",
+options:[
+"J(w)=MSE+λwᵀw",
+"J=MSE",
+"J=Bias²",
+"J=Variance"
+],
+answer:0
+}
+
+];
+
+let html="";
+
+exam.forEach((item,index)=>{
+
+html+=`
+<div class="question">
+
+<h3>Q${index+1}. ${item.q}</h3>
+
+${item.options.map((op,i)=>
+`<label>
+<input type="radio" name="q${index}" value="${i}">
+ ${op}
+</label>`
+).join("")}
+
+</div>
+`;
+
+});
+
+document.getElementById("questions").innerHTML=html;
+
+function submitExam(){
+
+let score=0;
+
+exam.forEach((q,index)=>{
+
+let selected=
+document.querySelector(`input[name="q${index}"]:checked`);
+
+if(selected && parseInt(selected.value)===q.answer){
+score++;
+}
+
+});
+
+let total=exam.length;
+let wrong=total-score;
+let percent=((score/total)*100).toFixed(2);
+
+document.getElementById("correct").innerText=score;
+document.getElementById("wrong").innerText=wrong;
+document.getElementById("marks").innerText=score+" / "+total;
+document.getElementById("percentage").innerText=percent+"%";
+
+let status=document.getElementById("status");
+
+if(score>=10){
+status.innerHTML="<div class='pass'>PASS</div>";
+}
+else{
+status.innerHTML="<div class='fail'>FAIL</div>";
+}
+
+document.getElementById("result").style.display="block";
+
+window.scrollTo({
+top:document.body.scrollHeight,
+behavior:'smooth'
+});
+
+}
+
+</script>
+
+</body>
+</html>
