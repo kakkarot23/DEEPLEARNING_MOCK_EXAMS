@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHATECH Written Examination - Set 7</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial, sans-serif;
+background:#f4f6f9;
+padding:20px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 0 15px rgba(0,0,0,0.15);
+}
+
+.header{
+background:#0d6efd;
+color:white;
+padding:25px;
+text-align:center;
+border-radius:10px;
+margin-bottom:20px;
+}
+
+.header h1{
+margin-bottom:10px;
+}
+
+.student-box{
+margin-bottom:15px;
+}
+
+.student-box label{
+font-weight:bold;
+display:block;
+margin-bottom:5px;
+}
+
+.student-box input{
+width:100%;
+padding:12px;
+font-size:16px;
+border:1px solid #ccc;
+border-radius:6px;
+}
+
+.question{
+background:#fafafa;
+padding:15px;
+margin-top:15px;
+border-left:5px solid #0d6efd;
+border-radius:8px;
+}
+
+.question h3{
+margin-bottom:10px;
+color:#003366;
+}
+
+textarea{
+width:100%;
+min-height:120px;
+padding:10px;
+font-size:15px;
+border:1px solid #ccc;
+border-radius:6px;
+resize:vertical;
+}
+
+.button-area{
+text-align:center;
+margin-top:30px;
+}
+
+button{
+background:#28a745;
+color:white;
+padding:15px 40px;
+border:none;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+font-weight:bold;
+}
+
+button:hover{
+background:#1e7e34;
+}
+
+.footer{
+margin-top:30px;
+text-align:center;
+color:#666;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<h1>SHATECH WRITTEN EXAMINATION</h1>
+<h2>SET 7 - FEEDFORWARD DEEP NETWORKS</h2>
+<p>Answer all 50 questions. Your answers are automatically saved.</p>
+</div>
+
+<div class="student-box">
+<label>Student Name</label>
+<input type="text" id="studentName" onkeyup="saveData()">
+</div>
+
+<div class="student-box">
+<label>Register Number</label>
+<input type="text" id="regNo" onkeyup="saveData()">
+</div>
+
+<div id="questionContainer"></div>
+
+<div class="button-area">
+<button onclick="downloadPDF()">
+Submit & Download PDF
+</button>
+</div>
+
+<div class="footer">
+SHATECH Examination System | Feedforward Deep Networks
+</div>
+
+</div>
+
+<script>
+
+const questions = [
+
+"Define Feedforward Deep Network.",
+"What is a neural network?",
+"Explain the architecture of a simple feedforward network.",
+"What is the purpose of the input layer?",
+"What is the purpose of the hidden layer?",
+"What is the purpose of the output layer?",
+"Explain the equation f(x;θ)=b+Vsigmoid(c+Wx).",
+"What does the input vector x represent?",
+"What is the role of weight matrix W?",
+"What is the role of bias vector c?",
+"What is the role of weight matrix V?",
+"What is the purpose of output bias b?",
+"Define model parameters.",
+"What is a neuron?",
+"Explain weighted sum in neural networks.",
+"What is an activation function?",
+"Why are activation functions required?",
+"What happens if activation functions are removed?",
+"Define hidden units.",
+"Explain information flow in a feedforward network.",
+"Define Sigmoid activation function.",
+"Write the formula of Sigmoid.",
+"State advantages of Sigmoid.",
+"State disadvantages of Sigmoid.",
+"Define Tanh activation.",
+"Write the formula of Tanh.",
+"Compare Sigmoid and Tanh.",
+"Define ReLU.",
+"Write the formula of ReLU.",
+"State advantages of ReLU.",
+"What is a deep neural network?",
+"What is a shallow neural network?",
+"Compare shallow and deep networks.",
+"Define depth of a network.",
+"Define width of a network.",
+"Explain representation learning.",
+"What is feature extraction?",
+"Explain hierarchical feature learning.",
+"Why are deep networks powerful?",
+"What are universal approximators?",
+"Define forward propagation.",
+"Explain computation of hidden layer activations.",
+"Explain output layer computation.",
+"What is model prediction?",
+"Define loss function.",
+"Why is training necessary?",
+"What are trainable parameters?",
+"List applications of feedforward neural networks.",
+"Explain image classification using feedforward networks.",
+"Summarize Feedforward Deep Networks and their importance."
+
+];
+
+const container=document.getElementById("questionContainer");
+
+questions.forEach((question,index)=>{
+
+container.innerHTML += `
+
+<div class="question">
+
+<h3 id="questionText${index+1}">
+Q${index+1}. ${question}
+</h3>
+
+<textarea
+id="q${index+1}"
+placeholder="Write your answer here..."
+onkeyup="saveData()"></textarea>
+
+</div>
+
+`;
+
+});
+
+function saveData(){
+
+localStorage.setItem(
+"ff_student_name",
+document.getElementById("studentName").value
+);
+
+localStorage.setItem(
+"ff_reg_no",
+document.getElementById("regNo").value
+);
+
+for(let i=1;i<=50;i++){
+
+let answer=document.getElementById("q"+i).value;
+
+localStorage.setItem(
+"ff_answer_"+i,
+answer
+);
+
+}
+
+}
+
+window.onload=function(){
+
+document.getElementById("studentName").value=
+localStorage.getItem("ff_student_name") || "";
+
+document.getElementById("regNo").value=
+localStorage.getItem("ff_reg_no") || "";
+
+for(let i=1;i<=50;i++){
+
+let answer=
+localStorage.getItem("ff_answer_"+i);
+
+if(answer){
+
+document.getElementById("q"+i).value=
+answer;
+
+}
+
+}
+
+};
+
+async function downloadPDF(){
+
+saveData();
+
+const { jsPDF } = window.jspdf;
+
+let doc = new jsPDF();
+
+let y=20;
+
+let student=
+document.getElementById("studentName").value;
+
+let reg=
+document.getElementById("regNo").value;
+
+doc.setFontSize(18);
+doc.text("SHATECH WRITTEN EXAMINATION",20,y);
+
+y+=10;
+
+doc.setFontSize(12);
+doc.text("SET 7 - FEEDFORWARD DEEP NETWORKS",20,y);
+
+y+=10;
+
+doc.text("Student Name: "+student,20,y);
+
+y+=8;
+
+doc.text("Register Number: "+reg,20,y);
+
+y+=15;
+
+for(let i=1;i<=50;i++){
+
+let question=
+document.getElementById(
+"questionText"+i
+).innerText;
+
+let answer=
+document.getElementById(
+"q"+i
+).value;
+
+if(y>250){
+
+doc.addPage();
+y=20;
+
+}
+
+doc.setFontSize(11);
+
+let qLines=
+doc.splitTextToSize(
+question,
+180
+);
+
+doc.text(qLines,10,y);
+
+y += qLines.length*6;
+
+let aLines=
+doc.splitTextToSize(
+"Answer: "+answer,
+180
+);
+
+doc.text(aLines,15,y);
+
+y += aLines.length*6 + 10;
+
+}
+
+doc.save("SHATECH_SET7_FEEDFORWARD_DEEP_NETWORKS.pdf");
+
+alert(
+"PDF Generated Successfully!"
+);
+
+}
+
+</script>
+
+</body>
+</html>
