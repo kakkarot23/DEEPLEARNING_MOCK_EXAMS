@@ -1,14 +1,13 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SHATECH Examination - Point Estimation & Bias Variance</title>
+<title>SHATECH MCQ Examination</title>
 
 <style>
 body{
-    font-family:Arial, sans-serif;
+    font-family: Arial, sans-serif;
     background:#f4f6f9;
     margin:0;
     padding:20px;
@@ -16,7 +15,7 @@ body{
 .container{
     max-width:1000px;
     margin:auto;
-    background:#fff;
+    background:white;
     padding:25px;
     border-radius:10px;
     box-shadow:0 0 15px rgba(0,0,0,0.15);
@@ -25,20 +24,11 @@ h1{
     text-align:center;
     color:#003366;
 }
-.student-box{
-    margin-bottom:20px;
-}
-.student-box input{
-    width:100%;
-    padding:12px;
-    font-size:16px;
-}
 .question{
     margin-top:20px;
     padding:15px;
     background:#fafafa;
     border-left:5px solid #007bff;
-    border-radius:5px;
 }
 .question h3{
     margin-top:0;
@@ -46,6 +36,14 @@ h1{
 label{
     display:block;
     margin:8px 0;
+}
+.student-box{
+    margin-bottom:20px;
+}
+.student-box input{
+    width:100%;
+    padding:10px;
+    font-size:16px;
 }
 .submit-btn{
     background:#28a745;
@@ -55,34 +53,27 @@ label{
     border-radius:8px;
     font-size:18px;
     cursor:pointer;
-    font-weight:bold;
 }
 .submit-btn:hover{
-    background:#218838;
+    background:#1e7e34;
 }
 .result-card{
     display:none;
     margin-top:30px;
-    padding:25px;
+    padding:20px;
     background:#f8f9fa;
     border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.15);
+    text-align:center;
 }
 .pass{
     color:green;
-    font-size:24px;
     font-weight:bold;
+    font-size:24px;
 }
 .fail{
     color:red;
-    font-size:24px;
     font-weight:bold;
-}
-table{
-    margin:auto;
-}
-td{
-    padding:8px;
+    font-size:24px;
 }
 </style>
 </head>
@@ -92,16 +83,58 @@ td{
 <div class="container">
 
 <h1>SHATECH MCQ Examination</h1>
-<h2 style="text-align:center;">Point Estimation, Bias, Variance & Cross Validation</h2>
 
 <div class="student-box">
 <label><b>Student Name</b></label>
-<input type="text" id="studentName" placeholder="Enter Student Name">
+<input type="text" id="studentName" placeholder="Enter Name">
 </div>
 
-<!-- Paste ALL YOUR Q1-Q30 QUESTION BLOCKS HERE -->
+<!-- Q1 -->
+<div class="question">
+<h3>1. What is point estimation?</h3>
+<label><input type="radio" name="q1" value="a"> Estimating multiple values</label>
+<label><input type="radio" name="q1" value="b"> Estimating a probability distribution</label>
+<label><input type="radio" name="q1" value="c"> Providing a single best estimate of a parameter</label>
+<label><input type="radio" name="q1" value="d"> Clustering data</label>
+</div>
 
-<!-- Questions already provided by you -->
+<!-- Q2 -->
+<div class="question">
+<h3>2. Bias measures:</h3>
+<label><input type="radio" name="q2" value="a"> Computational cost</label>
+<label><input type="radio" name="q2" value="b"> Difference between expected estimate and true value</label>
+<label><input type="radio" name="q2" value="c"> Number of parameters</label>
+<label><input type="radio" name="q2" value="d"> Variance of data</label>
+</div>
+
+<!-- Q3 -->
+<div class="question">
+<h3>3. An unbiased estimator has:</h3>
+<label><input type="radio" name="q3" value="a"> Variance = 0</label>
+<label><input type="radio" name="q3" value="b"> Bias = 1</label>
+<label><input type="radio" name="q3" value="c"> Bias = 0</label>
+<label><input type="radio" name="q3" value="d"> Infinite variance</label>
+</div>
+
+<!-- Q4 -->
+<div class="question">
+<h3>4. Variance measures:</h3>
+<label><input type="radio" name="q4" value="a"> Average prediction</label>
+<label><input type="radio" name="q4" value="b"> Spread of estimator values across samples</label>
+<label><input type="radio" name="q4" value="c"> Number of features</label>
+<label><input type="radio" name="q4" value="d"> Learning rate</label>
+</div>
+
+<!-- Q5 -->
+<div class="question">
+<h3>5. Standard Error is:</h3>
+<label><input type="radio" name="q5" value="a"> √Variance</label>
+<label><input type="radio" name="q5" value="b"> Variance²</label>
+<label><input type="radio" name="q5" value="c"> Bias²</label>
+<label><input type="radio" name="q5" value="d"> MSE</label>
+</div>
+
+<!-- ADD Q6 TO Q30 HERE -->
 
 <div style="text-align:center;margin-top:30px;">
 <button class="submit-btn" onclick="submitExam()">
@@ -110,41 +143,15 @@ Submit Examination
 </div>
 
 <div id="resultCard" class="result-card">
-<h2 style="text-align:center;">FINAL RESULT</h2>
+<h2>Examination Result</h2>
 
-<table>
-<tr>
-<td><b>Student Name</b></td>
-<td id="r_name"></td>
-</tr>
+<p><b>Student:</b> <span id="r_name"></span></p>
+<p><b>Correct Answers:</b> <span id="r_correct"></span></p>
+<p><b>Wrong Answers:</b> <span id="r_wrong"></span></p>
+<p><b>Marks:</b> <span id="r_marks"></span></p>
+<p><b>Percentage:</b> <span id="r_percentage"></span></p>
 
-<tr>
-<td><b>Total Questions</b></td>
-<td>30</td>
-</tr>
-
-<tr>
-<td><b>Correct Answers</b></td>
-<td id="r_correct"></td>
-</tr>
-
-<tr>
-<td><b>Wrong Answers</b></td>
-<td id="r_wrong"></td>
-</tr>
-
-<tr>
-<td><b>Marks Obtained</b></td>
-<td id="r_marks"></td>
-</tr>
-
-<tr>
-<td><b>Percentage</b></td>
-<td id="r_percentage"></td>
-</tr>
-</table>
-
-<div id="r_status" style="text-align:center;margin-top:20px;"></div>
+<div id="r_status"></div>
 
 </div>
 
@@ -194,33 +201,26 @@ for(let i=1;i<=30;i++){
 let selected =
 document.querySelector('input[name="q'+i+'"]:checked');
 
-if(selected && selected.value === answers['q'+i]){
+if(selected && selected.value===answers['q'+i]){
 score++;
 }
 }
 
-let wrong = 30 - score;
-let percentage = ((score/30)*100).toFixed(2);
-let status = score >= 15 ? "PASS" : "FAIL";
+let wrong = 30-score;
+let percentage=((score/30)*100).toFixed(2);
+let status = score>=15 ? "PASS" : "FAIL";
 
 document.getElementById("r_name").innerHTML =
 document.getElementById("studentName").value;
 
-document.getElementById("r_correct").innerHTML = score;
-document.getElementById("r_wrong").innerHTML = wrong;
-document.getElementById("r_marks").innerHTML = score + "/30";
-document.getElementById("r_percentage").innerHTML = percentage + "%";
+document.getElementById("r_correct").innerHTML=score;
+document.getElementById("r_wrong").innerHTML=wrong;
+document.getElementById("r_marks").innerHTML=score+"/30";
+document.getElementById("r_percentage").innerHTML=percentage+"%";
 
-let statusDiv = document.getElementById("r_status");
-
-statusDiv.innerHTML = status;
-
-if(status==="PASS"){
-statusDiv.className="pass";
-}
-else{
-statusDiv.className="fail";
-}
+let statusDiv=document.getElementById("r_status");
+statusDiv.innerHTML=status;
+statusDiv.className=(status==="PASS")?"pass":"fail";
 
 document.getElementById("resultCard").style.display="block";
 
@@ -228,10 +228,10 @@ window.scrollTo({
 top:document.body.scrollHeight,
 behavior:'smooth'
 });
+
 }
 
 </script>
 
 </body>
 </html>
-```
