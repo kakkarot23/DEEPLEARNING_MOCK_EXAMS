@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHATECH Written Examination - Chapter 5 Convolutional Networks</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#eef2f7;
+    padding:20px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    background:#fff;
+    border-radius:15px;
+    padding:30px;
+    box-shadow:0 0 20px rgba(0,0,0,0.15);
+}
+
+.header{
+    text-align:center;
+    background:#0d6efd;
+    color:white;
+    padding:25px;
+    border-radius:10px;
+    margin-bottom:25px;
+}
+
+.header h1{
+    margin-bottom:10px;
+}
+
+.student-info{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.student-info input{
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.instructions{
+    background:#fff3cd;
+    border-left:6px solid #ffc107;
+    padding:15px;
+    margin-bottom:25px;
+    border-radius:8px;
+}
+
+.question{
+    background:#fafafa;
+    border-left:5px solid #0d6efd;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:10px;
+}
+
+.question h3{
+    color:#003366;
+    margin-bottom:10px;
+}
+
+textarea{
+    width:100%;
+    min-height:90px;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    resize:vertical;
+    font-size:15px;
+}
+
+.button-area{
+    text-align:center;
+    margin-top:30px;
+}
+
+button{
+    padding:15px 30px;
+    margin:10px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.save-btn{
+    background:#198754;
+}
+
+.pdf-btn{
+    background:#dc3545;
+}
+
+.submit-btn{
+    background:#0d6efd;
+}
+
+.footer{
+    text-align:center;
+    margin-top:30px;
+    color:#666;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<h1>SHATECH WRITTEN EXAMINATION</h1>
+<h2>Chapter 5 - Convolutional Networks (CNN)</h2>
+<h3>Total Questions: 50</h3>
+</div>
+
+<div class="student-info">
+<input type="text" id="studentName" placeholder="Enter Student Name">
+<input type="text" id="studentReg" placeholder="Enter Register Number">
+</div>
+
+<div class="instructions">
+<b>Instructions:</b>
+<ul style="margin-left:20px;margin-top:10px;">
+<li>Answer all 50 questions.</li>
+<li>Type answers in the text area provided.</li>
+<li>Click Save Progress to store answers locally.</li>
+<li>Click Download PDF to download the completed answer sheet.</li>
+</ul>
+</div>
+
+<!-- QUESTIONS -->
+
+<div id="questions"></div>
+
+<div class="button-area">
+<button class="save-btn" onclick="saveAnswers()">Save Progress</button>
+<button class="pdf-btn" onclick="downloadPDF()">Download PDF</button>
+<button class="submit-btn" onclick="submitExam()">Submit Exam</button>
+</div>
+
+<div class="footer">
+© SHATECH Examination Portal - Convolutional Networks
+</div>
+
+</div>
+
+<!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+
+const questionList = [
+
+"Define convolution operation in CNNs.",
+"Write the continuous convolution formula.",
+"Write the discrete convolution formula.",
+"Write the 2D convolution formula.",
+"What is the input in convolution?",
+"What is a kernel or filter?",
+"What is a feature map?",
+"Explain sparse connectivity.",
+"Why does sparse connectivity reduce parameters?",
+"What is parameter sharing?",
+"How does parameter sharing help CNNs?",
+"Define translation equivariance.",
+"Why is equivariance important in image processing?",
+"What is multi-channel convolution?",
+"Explain RGB image channels.",
+"Write the formula for multi-channel convolution.",
+"What is strided convolution?",
+"What is the advantage of stride greater than 1?",
+"Define padding.",
+"What is valid padding?",
+"What is same padding?",
+"What is full padding?",
+"What is pooling?",
+"State the main purpose of pooling.",
+"Define max pooling.",
+"Write the max pooling formula.",
+"Define average pooling.",
+"How does pooling reduce dimensionality?",
+"Why does max pooling provide translation invariance?",
+"What is receptive field in CNNs?",
+"Explain convolution as an infinitely strong prior.",
+"What assumptions are made by convolutional networks?",
+"Give one limitation of convolutional priors.",
+"Draw the typical CNN architecture.",
+"What happens after convolution in CNNs?",
+"What is the purpose of activation functions?",
+"What is flattening in CNNs?",
+"What are fully connected layers used for?",
+"What is the role of softmax output layer?",
+"How do early CNN layers behave?",
+"How do middle CNN layers behave?",
+"How do deeper CNN layers behave?",
+"What is Fourier Transform convolution?",
+"What is separable convolution?",
+"What is Im2Col?",
+"What are random filters?",
+"Why can random filters work well on images?",
+"What is unsupervised pretraining in CNNs?",
+"What is the connection between CNNs and V1 visual cortex?",
+"What are Gabor filters and why are they important in CNNs?"
+
+];
+
+const container = document.getElementById("questions");
+
+questionList.forEach((q,index)=>{
+
+container.innerHTML += `
+<div class="question">
+<h3>Q${index+1}. ${q}</h3>
+<textarea id="q${index+1}" placeholder="Type your answer here..."></textarea>
+</div>
+`;
+
+});
+
+function saveAnswers(){
+
+let answers = {};
+
+for(let i=1;i<=50;i++){
+answers["q"+i] = document.getElementById("q"+i).value;
+}
+
+answers.studentName =
+document.getElementById("studentName").value;
+
+answers.studentReg =
+document.getElementById("studentReg").value;
+
+localStorage.setItem(
+"cnn_exam_answers",
+JSON.stringify(answers)
+);
+
+alert("Progress Saved Successfully!");
+
+}
+
+window.onload=function(){
+
+let data=
+JSON.parse(localStorage.getItem("cnn_exam_answers"));
+
+if(data){
+
+document.getElementById("studentName").value=
+data.studentName || "";
+
+document.getElementById("studentReg").value=
+data.studentReg || "";
+
+for(let i=1;i<=50;i++){
+
+if(data["q"+i]){
+document.getElementById("q"+i).value=
+data["q"+i];
+}
+
+}
+
+}
+
+}
+
+async function downloadPDF(){
+
+const { jsPDF } = window.jspdf;
+
+const doc = new jsPDF();
+
+let y=15;
+
+doc.setFontSize(16);
+doc.text("SHATECH Written Examination",10,y);
+
+y+=10;
+doc.setFontSize(12);
+
+doc.text(
+"Student: "+
+document.getElementById("studentName").value,
+10,y
+);
+
+y+=8;
+
+doc.text(
+"Register No: "+
+document.getElementById("studentReg").value,
+10,y
+);
+
+y+=12;
+
+for(let i=1;i<=50;i++){
+
+let question=
+questionList[i-1];
+
+let answer=
+document.getElementById("q"+i).value;
+
+let content=
+"Q"+i+": "+question;
+
+let lines=
+doc.splitTextToSize(content,180);
+
+doc.text(lines,10,y);
+
+y+=lines.length*6;
+
+let ansLines=
+doc.splitTextToSize(
+"Answer: "+answer,
+180
+);
+
+doc.text(ansLines,15,y);
+
+y+=ansLines.length*6+5;
+
+if(y>260){
+
+doc.addPage();
+y=20;
+
+}
+
+}
+
+doc.save("SHATECH_CNN_Exam_AnswerSheet.pdf");
+
+}
+
+function submitExam(){
+
+alert(
+"Exam Submitted Successfully.\nYou can also download the PDF answer sheet."
+);
+
+}
+
+</script>
+
+</body>
+</html>
