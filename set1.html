@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SHATECH MCQ Examination - Set 1</title>
+
+<style>
+
+body{
+    font-family:Arial, sans-serif;
+    background:#f4f6f9;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 15px rgba(0,0,0,0.15);
+}
+
+h1{
+    text-align:center;
+    color:#003366;
+}
+
+.student-box{
+    margin-bottom:20px;
+}
+
+.student-box input{
+    width:100%;
+    padding:12px;
+    font-size:16px;
+}
+
+.question{
+    margin-top:25px;
+    padding:15px;
+    background:#fafafa;
+    border-left:5px solid #007bff;
+}
+
+.question p{
+    font-weight:bold;
+}
+
+.option{
+    margin:8px 0;
+}
+
+.submit-btn{
+    background:#28a745;
+    color:white;
+    padding:15px 40px;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.submit-btn:hover{
+    background:#1e7e34;
+}
+
+.result-card{
+    margin-top:40px;
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0px 0px 15px rgba(0,0,0,0.2);
+    max-width:500px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+}
+
+.pass{
+    color:green;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.fail{
+    color:red;
+    font-size:20px;
+    font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>SHATECH MCQ Examination - Set 1</h1>
+
+<div class="student-box">
+<label><b>Student Name</b></label>
+<input type="text" id="studentNameInput" placeholder="Enter your name">
+</div>
+
+<!-- Q1 -->
+<div class="question">
+<p>1. What are the three components of a Machine Learning system?</p>
+<div class="option"><input type="radio" name="q1" value="a"> Data, Model, GPU</div>
+<div class="option"><input type="radio" name="q1" value="b"> Task, Experience, Performance</div>
+<div class="option"><input type="radio" name="q1" value="c"> Input, Output, Label</div>
+<div class="option"><input type="radio" name="q1" value="d"> Training, Testing, Validation</div>
+</div>
+
+<!-- Q2 -->
+<div class="question">
+<p>2. Which learning method uses labeled data?</p>
+<div class="option"><input type="radio" name="q2" value="a"> Unsupervised</div>
+<div class="option"><input type="radio" name="q2" value="b"> Reinforcement</div>
+<div class="option"><input type="radio" name="q2" value="c"> Supervised</div>
+<div class="option"><input type="radio" name="q2" value="d"> Clustering</div>
+</div>
+
+<!-- Q3 -->
+<div class="question">
+<p>3. Which task predicts numerical values?</p>
+<div class="option"><input type="radio" name="q3" value="a"> Classification</div>
+<div class="option"><input type="radio" name="q3" value="b"> Regression</div>
+<div class="option"><input type="radio" name="q3" value="c"> Clustering</div>
+<div class="option"><input type="radio" name="q3" value="d"> Translation</div>
+</div>
+
+<!-- Q4 -->
+<div class="question">
+<p>4. Credit card fraud detection is an example of:</p>
+<div class="option"><input type="radio" name="q4" value="a"> Classification</div>
+<div class="option"><input type="radio" name="q4" value="b"> Translation</div>
+<div class="option"><input type="radio" name="q4" value="c"> Anomaly Detection</div>
+<div class="option"><input type="radio" name="q4" value="d"> Sampling</div>
+</div>
+
+<!-- Q5 -->
+<div class="question">
+<p>5. Which task fills missing values?</p>
+<div class="option"><input type="radio" name="q5" value="a"> Denoising</div>
+<div class="option"><input type="radio" name="q5" value="b"> Imputation</div>
+<div class="option"><input type="radio" name="q5" value="c"> Sampling</div>
+<div class="option"><input type="radio" name="q5" value="d"> Regression</div>
+</div>
+
+<!-- Q6 -->
+<div class="question">
+<p>6. Which learning type discovers hidden patterns?</p>
+<div class="option"><input type="radio" name="q6" value="a"> Supervised</div>
+<div class="option"><input type="radio" name="q6" value="b"> Unsupervised</div>
+<div class="option"><input type="radio" name="q6" value="c"> Reinforcement</div>
+<div class="option"><input type="radio" name="q6" value="d"> Online</div>
+</div>
+
+<!-- Q7 -->
+<div class="question">
+<p>7. Which model stores all training examples?</p>
+<div class="option"><input type="radio" name="q7" value="a"> Linear Regression</div>
+<div class="option"><input type="radio" name="q7" value="b"> CNN</div>
+<div class="option"><input type="radio" name="q7" value="c"> k-NN</div>
+<div class="option"><input type="radio" name="q7" value="d"> RNN</div>
+</div>
+
+<!-- Q8 -->
+<div class="question">
+<p>8. High training and high test error indicate:</p>
+<div class="option"><input type="radio" name="q8" value="a"> Overfitting</div>
+<div class="option"><input type="radio" name="q8" value="b"> Underfitting</div>
+<div class="option"><input type="radio" name="q8" value="c"> Generalization</div>
+<div class="option"><input type="radio" name="q8" value="d"> Regularization</div>
+</div>
+
+<!-- Q9 -->
+<div class="question">
+<p>9. Very low training error but high test error indicates:</p>
+<div class="option"><input type="radio" name="q9" value="a"> Underfitting</div>
+<div class="option"><input type="radio" name="q9" value="b"> Overfitting</div>
+<div class="option"><input type="radio" name="q9" value="c"> Optimization</div>
+<div class="option"><input type="radio" name="q9" value="d"> Validation</div>
+</div>
+
+<!-- Q10 -->
+<div class="question">
+<p>10. Which theorem states no algorithm is best for every problem?</p>
+<div class="option"><input type="radio" name="q10" value="a"> Bayes Theorem</div>
+<div class="option"><input type="radio" name="q10" value="b"> Central Limit Theorem</div>
+<div class="option"><input type="radio" name="q10" value="c"> No Free Lunch Theorem</div>
+<div class="option"><input type="radio" name="q10" value="d"> Pythagoras Theorem</div>
+</div>
+
+<!-- Q11-Q30 -->
+<!-- Continue same pattern -->
+
+<script>
+for(let i=11;i<=30;i++){
+document.write(`
+<div class="question">
+<p>${i}. Machine Learning MCQ Question ${i}</p>
+
+<div class="option">
+<input type="radio" name="q${i}" value="a"> Option A
+</div>
+
+<div class="option">
+<input type="radio" name="q${i}" value="b"> Option B
+</div>
+
+<div class="option">
+<input type="radio" name="q${i}" value="c"> Option C
+</div>
+
+<div class="option">
+<input type="radio" name="q${i}" value="d"> Option D
+</div>
+
+</div>
+`);
+}
+</script>
+
+<hr>
+
+<div style="text-align:center;margin-top:30px;">
+<button onclick="submitExam()" class="submit-btn">
+Submit Examination
+</button>
+</div>
+
+<div id="resultCard" class="result-card" style="display:none;">
+
+<h2>SHATECH Examination Result</h2>
+
+<p><strong>Student:</strong>
+<span id="studentName"></span>
+</p>
+
+<p><strong>Total Questions:</strong> 30</p>
+
+<p><strong>Correct Answers:</strong>
+<span id="correct"></span>
+</p>
+
+<p><strong>Score:</strong>
+<span id="score"></span>/30
+</p>
+
+<p><strong>Percentage:</strong>
+<span id="percentage"></span>%
+</p>
+
+<p><strong>Status:</strong>
+<span id="status"></span>
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+const answers={
+q1:"b",
+q2:"c",
+q3:"b",
+q4:"c",
+q5:"b",
+q6:"b",
+q7:"c",
+q8:"b",
+q9:"b",
+q10:"c",
+q11:"b",
+q12:"b",
+q13:"c",
+q14:"a",
+q15:"a",
+q16:"b",
+q17:"c",
+q18:"b",
+q19:"a",
+q20:"a",
+q21:"b",
+q22:"c",
+q23:"b",
+q24:"a",
+q25:"c",
+q26:"c",
+q27:"a",
+q28:"b",
+q29:"c",
+q30:"c"
+};
+
+function submitExam(){
+
+let score=0;
+
+for(let key in answers){
+
+let selected=document.querySelector(
+'input[name="'+key+'"]:checked'
+);
+
+if(selected && selected.value===answers[key]){
+score++;
+}
+}
+
+let percentage=((score/30)*100).toFixed(2);
+let status=score>=15?"PASS":"FAIL";
+
+document.getElementById("studentName").innerHTML=
+document.getElementById("studentNameInput").value;
+
+document.getElementById("correct").innerHTML=score;
+document.getElementById("score").innerHTML=score;
+document.getElementById("percentage").innerHTML=percentage;
+document.getElementById("status").innerHTML=status;
+
+document.getElementById("status").className=
+score>=15?"pass":"fail";
+
+document.getElementById("resultCard").style.display="block";
+
+window.scrollTo({
+top:document.body.scrollHeight,
+behavior:'smooth'
+});
+}
+
+</script>
+
+</body>
+</html>

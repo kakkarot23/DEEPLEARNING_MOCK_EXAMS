@@ -1,0 +1,379 @@
+<!-- ==========================
+SET 4 - SHATECH MCQ EXAM
+30 QUESTIONS
+File: set4.html
+========================== -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SHATECH - Set 4</title>
+
+<style>
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f6f9;
+    margin:0;
+    padding:20px;
+}
+
+.header{
+    background:#0d6efd;
+    color:white;
+    text-align:center;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.question{
+    background:white;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:10px;
+    box-shadow:0px 2px 8px rgba(0,0,0,0.1);
+}
+
+.question h3{
+    margin-top:0;
+}
+
+label{
+    display:block;
+    padding:5px;
+}
+
+.submit-btn{
+    background:#28a745;
+    color:white;
+    padding:15px 40px;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.submit-btn:hover{
+    background:#1e7e34;
+}
+
+.result-card{
+    margin-top:40px;
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0px 0px 15px rgba(0,0,0,0.2);
+    max-width:500px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+}
+
+.pass{
+    color:green;
+    font-weight:bold;
+    font-size:20px;
+}
+
+.fail{
+    color:red;
+    font-weight:bold;
+    font-size:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<h1>SHATECH ONLINE EXAMINATION</h1>
+<h2>SET 4 - MLE, Bayesian Statistics, MAP, SGD</h2>
+</div>
+
+<!-- Q1 -->
+<div class="question">
+<h3>1. What is the main principle of MLE?</h3>
+<label><input type="radio" name="q1" value="a"> Minimize variance</label>
+<label><input type="radio" name="q1" value="b"> Maximize likelihood of observed data</label>
+<label><input type="radio" name="q1" value="c"> Minimize parameters</label>
+<label><input type="radio" name="q1" value="d"> Maximize bias</label>
+</div>
+
+<!-- Q2 -->
+<div class="question">
+<h3>2. MLE chooses parameters that:</h3>
+<label><input type="radio" name="q2" value="a"> Minimize training examples</label>
+<label><input type="radio" name="q2" value="b"> Make observed data most probable</label>
+<label><input type="radio" name="q2" value="c"> Maximize variance</label>
+<label><input type="radio" name="q2" value="d"> Minimize hidden layers</label>
+</div>
+
+<!-- Q3 -->
+<div class="question">
+<h3>3. Which quantity is commonly maximized instead of likelihood?</h3>
+<label><input type="radio" name="q3" value="a"> Variance</label>
+<label><input type="radio" name="q3" value="b"> Gradient</label>
+<label><input type="radio" name="q3" value="c"> Log-Likelihood</label>
+<label><input type="radio" name="q3" value="d"> Bias</label>
+</div>
+
+<!-- Q4 -->
+<div class="question">
+<h3>4. Maximizing likelihood is equivalent to minimizing:</h3>
+<label><input type="radio" name="q4" value="a"> MSE</label>
+<label><input type="radio" name="q4" value="b"> KL Divergence</label>
+<label><input type="radio" name="q4" value="c"> Variance</label>
+<label><input type="radio" name="q4" value="d"> Bias</label>
+</div>
+
+<!-- Q5 -->
+<div class="question">
+<h3>5. Conditional MLE is mainly used in:</h3>
+<label><input type="radio" name="q5" value="a"> Clustering</label>
+<label><input type="radio" name="q5" value="b"> Supervised Learning</label>
+<label><input type="radio" name="q5" value="c"> Dimensionality Reduction</label>
+<label><input type="radio" name="q5" value="d"> Sampling</label>
+</div>
+
+<!-- Q6 -->
+<div class="question">
+<h3>6. In Bayesian statistics, parameters are treated as:</h3>
+<label><input type="radio" name="q6" value="a"> Fixed constants</label>
+<label><input type="radio" name="q6" value="b"> Random variables</label>
+<label><input type="radio" name="q6" value="c"> Labels</label>
+<label><input type="radio" name="q6" value="d"> Features</label>
+</div>
+
+<!-- Q7 -->
+<div class="question">
+<h3>7. Bayes Rule combines likelihood and:</h3>
+<label><input type="radio" name="q7" value="a"> Gradient</label>
+<label><input type="radio" name="q7" value="b"> Prior</label>
+<label><input type="radio" name="q7" value="c"> ReLU</label>
+<label><input type="radio" name="q7" value="d"> Feature Map</label>
+</div>
+
+<!-- Q8 -->
+<div class="question">
+<h3>8. MAP estimation equals:</h3>
+<label><input type="radio" name="q8" value="a"> MLE + Prior Information</label>
+<label><input type="radio" name="q8" value="b"> MLE − Prior Information</label>
+<label><input type="radio" name="q8" value="c"> Variance + Bias</label>
+<label><input type="radio" name="q8" value="d"> SGD + Momentum</label>
+</div>
+
+<!-- Q9 -->
+<div class="question">
+<h3>9. Gaussian prior leads to:</h3>
+<label><input type="radio" name="q9" value="a"> L1 Regularization</label>
+<label><input type="radio" name="q9" value="b"> Dropout</label>
+<label><input type="radio" name="q9" value="c"> L2 Regularization</label>
+<label><input type="radio" name="q9" value="d"> Pooling</label>
+</div>
+
+<!-- Q10 -->
+<div class="question">
+<h3>10. Which optimizer uses minibatches?</h3>
+<label><input type="radio" name="q10" value="a"> SGD</label>
+<label><input type="radio" name="q10" value="b"> k-NN</label>
+<label><input type="radio" name="q10" value="c"> PCA</label>
+<label><input type="radio" name="q10" value="d"> SVM</label>
+</div>
+
+<!-- Questions 11-30 -->
+
+<div class="question"><h3>11. MLE stands for?</h3>
+<label><input type="radio" name="q11" value="a"> Maximum Likelihood Estimation</label>
+<label><input type="radio" name="q11" value="b"> Minimum Loss Estimation</label>
+<label><input type="radio" name="q11" value="c"> Mean Linear Error</label>
+<label><input type="radio" name="q11" value="d"> Maximum Layer Estimation</label></div>
+
+<div class="question"><h3>12. Log-Likelihood is used because it is:</h3>
+<label><input type="radio" name="q12" value="a"> Harder to optimize</label>
+<label><input type="radio" name="q12" value="b"> Easier to optimize</label>
+<label><input type="radio" name="q12" value="c"> Random</label>
+<label><input type="radio" name="q12" value="d"> Discrete</label></div>
+
+<div class="question"><h3>13. KL Divergence measures:</h3>
+<label><input type="radio" name="q13" value="a"> Similarity of networks</label>
+<label><input type="radio" name="q13" value="b"> Difference between probability distributions</label>
+<label><input type="radio" name="q13" value="c"> Number of neurons</label>
+<label><input type="radio" name="q13" value="d"> Learning rate</label></div>
+
+<div class="question"><h3>14. Prior represents:</h3>
+<label><input type="radio" name="q14" value="a"> Belief before observing data</label>
+<label><input type="radio" name="q14" value="b"> Final prediction</label>
+<label><input type="radio" name="q14" value="c"> Error value</label>
+<label><input type="radio" name="q14" value="d"> Gradient</label></div>
+
+<div class="question"><h3>15. Posterior represents:</h3>
+<label><input type="radio" name="q15" value="a"> Updated belief after data</label>
+<label><input type="radio" name="q15" value="b"> Hidden layer</label>
+<label><input type="radio" name="q15" value="c"> Activation</label>
+<label><input type="radio" name="q15" value="d"> Variance</label></div>
+
+<div class="question"><h3>16. MAP stands for:</h3>
+<label><input type="radio" name="q16" value="a"> Maximum A Posteriori</label>
+<label><input type="radio" name="q16" value="b"> Mean Average Precision</label>
+<label><input type="radio" name="q16" value="c"> Maximum Activation Point</label>
+<label><input type="radio" name="q16" value="d"> Model Accuracy Predictor</label></div>
+
+<div class="question"><h3>17. MAP estimation maximizes:</h3>
+<label><input type="radio" name="q17" value="a"> Posterior Probability</label>
+<label><input type="radio" name="q17" value="b"> Bias</label>
+<label><input type="radio" name="q17" value="c"> Variance</label>
+<label><input type="radio" name="q17" value="d"> Epochs</label></div>
+
+<div class="question"><h3>18. SGD stands for:</h3>
+<label><input type="radio" name="q18" value="a"> Stochastic Gradient Descent</label>
+<label><input type="radio" name="q18" value="b"> Sample Gradient Data</label>
+<label><input type="radio" name="q18" value="c"> Sequential Gradient Descent</label>
+<label><input type="radio" name="q18" value="d"> Structured Gradient Descent</label></div>
+
+<div class="question"><h3>19. SGD update uses:</h3>
+<label><input type="radio" name="q19" value="a"> Entire dataset always</label>
+<label><input type="radio" name="q19" value="b"> Minibatches</label>
+<label><input type="radio" name="q19" value="c"> No gradients</label>
+<label><input type="radio" name="q19" value="d"> Only labels</label></div>
+
+<div class="question"><h3>20. η represents:</h3>
+<label><input type="radio" name="q20" value="a"> Learning Rate</label>
+<label><input type="radio" name="q20" value="b"> Bias</label>
+<label><input type="radio" name="q20" value="c"> Variance</label>
+<label><input type="radio" name="q20" value="d"> Prior</label></div>
+
+<div class="question"><h3>21. Curse of Dimensionality occurs when:</h3>
+<label><input type="radio" name="q21" value="a"> Dimensions increase</label>
+<label><input type="radio" name="q21" value="b"> Dimensions decrease</label>
+<label><input type="radio" name="q21" value="c"> Bias increases</label>
+<label><input type="radio" name="q21" value="d"> Layers decrease</label></div>
+
+<div class="question"><h3>22. High-dimensional spaces require:</h3>
+<label><input type="radio" name="q22" value="a"> Less data</label>
+<label><input type="radio" name="q22" value="b"> More data</label>
+<label><input type="radio" name="q22" value="c"> No data</label>
+<label><input type="radio" name="q22" value="d"> Less computation</label></div>
+
+<div class="question"><h3>23. Data sparsity is a result of:</h3>
+<label><input type="radio" name="q23" value="a"> Curse of Dimensionality</label>
+<label><input type="radio" name="q23" value="b"> Dropout</label>
+<label><input type="radio" name="q23" value="c"> Pooling</label>
+<label><input type="radio" name="q23" value="d"> Batch Normalization</label></div>
+
+<div class="question"><h3>24. Manifold Hypothesis states:</h3>
+<label><input type="radio" name="q24" value="a"> Data lies on low-dimensional manifolds</label>
+<label><input type="radio" name="q24" value="b"> Data is random</label>
+<label><input type="radio" name="q24" value="c"> Data is linear</label>
+<label><input type="radio" name="q24" value="d"> Data has no structure</label></div>
+
+<div class="question"><h3>25. Face images are examples supporting:</h3>
+<label><input type="radio" name="q25" value="a"> Manifold Hypothesis</label>
+<label><input type="radio" name="q25" value="b"> Bias</label>
+<label><input type="radio" name="q25" value="c"> Underfitting</label>
+<label><input type="radio" name="q25" value="d"> SGD</label></div>
+
+<div class="question"><h3>26. Speech signals often lie on:</h3>
+<label><input type="radio" name="q26" value="a"> Low-dimensional manifolds</label>
+<label><input type="radio" name="q26" value="b"> Random noise</label>
+<label><input type="radio" name="q26" value="c"> Infinite dimensions</label>
+<label><input type="radio" name="q26" value="d"> None</label></div>
+
+<div class="question"><h3>27. Deep learning benefits from:</h3>
+<label><input type="radio" name="q27" value="a"> Manifold structure</label>
+<label><input type="radio" name="q27" value="b"> Random labels</label>
+<label><input type="radio" name="q27" value="c"> Zero data</label>
+<label><input type="radio" name="q27" value="d"> Infinite bias</label></div>
+
+<div class="question"><h3>28. MAP with Gaussian prior becomes:</h3>
+<label><input type="radio" name="q28" value="a"> L2 Regularization</label>
+<label><input type="radio" name="q28" value="b"> L1 Regularization</label>
+<label><input type="radio" name="q28" value="c"> Dropout</label>
+<label><input type="radio" name="q28" value="d"> Pooling</label></div>
+
+<div class="question"><h3>29. MLE is widely used because it is:</h3>
+<label><input type="radio" name="q29" value="a"> Consistent</label>
+<label><input type="radio" name="q29" value="b"> Efficient</label>
+<label><input type="radio" name="q29" value="c"> Both A and B</label>
+<label><input type="radio" name="q29" value="d"> Neither</label></div>
+
+<div class="question"><h3>30. Which topic is NOT covered in Set 4?</h3>
+<label><input type="radio" name="q30" value="a"> MLE</label>
+<label><input type="radio" name="q30" value="b"> Bayesian Statistics</label>
+<label><input type="radio" name="q30" value="c"> CNN Pooling</label>
+<label><input type="radio" name="q30" value="d"> SGD</label></div>
+
+<hr>
+
+<div style="text-align:center;">
+<button onclick="submitExam()" class="submit-btn">
+Submit Examination
+</button>
+</div>
+
+<div id="resultCard" class="result-card" style="display:none;">
+<h2>SET 4 RESULT</h2>
+<p><strong>Correct Answers:</strong> <span id="correct"></span></p>
+<p><strong>Score:</strong> <span id="score"></span>/30</p>
+<p><strong>Percentage:</strong> <span id="percentage"></span>%</p>
+<p><strong>Status:</strong> <span id="status"></span></p>
+</div>
+
+<script>
+
+const answers={
+q1:"b",q2:"b",q3:"c",q4:"b",q5:"b",
+q6:"b",q7:"b",q8:"a",q9:"c",q10:"a",
+q11:"a",q12:"b",q13:"b",q14:"a",q15:"a",
+q16:"a",q17:"a",q18:"a",q19:"b",q20:"a",
+q21:"a",q22:"b",q23:"a",q24:"a",q25:"a",
+q26:"a",q27:"a",q28:"a",q29:"c",q30:"c"
+};
+
+function submitExam(){
+
+let score=0;
+
+for(let key in answers){
+
+let selected=document.querySelector(
+'input[name="'+key+'"]:checked'
+);
+
+if(selected && selected.value===answers[key]){
+score++;
+}
+
+}
+
+let percentage=((score/30)*100).toFixed(2);
+
+document.getElementById("correct").innerHTML=score;
+document.getElementById("score").innerHTML=score;
+document.getElementById("percentage").innerHTML=percentage;
+
+if(score>=15){
+document.getElementById("status").innerHTML="PASS";
+document.getElementById("status").className="pass";
+}
+else{
+document.getElementById("status").innerHTML="FAIL";
+document.getElementById("status").className="fail";
+}
+
+document.getElementById("resultCard").style.display="block";
+
+window.scrollTo({
+top:document.body.scrollHeight,
+behavior:"smooth"
+});
+
+}
+
+</script>
+
+</body>
+</html>

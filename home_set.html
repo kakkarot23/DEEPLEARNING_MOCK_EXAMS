@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SHATECH Examination Portal</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f9;
+margin:0;
+padding:0;
+}
+
+header{
+background:#002147;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+.container{
+width:500px;
+margin:60px auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin-top:10px;
+margin-bottom:20px;
+}
+
+button{
+width:100%;
+padding:15px;
+background:#007bff;
+color:white;
+border:none;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0056b3;
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+<h1>SHATECH ONLINE EXAMINATION PORTAL</h1>
+</header>
+
+<div class="container">
+
+<h2>Student Login</h2>
+
+<label>Name</label>
+<input type="text" id="name">
+
+<label>Select Examination Set</label>
+
+<select id="examSet">
+
+<option value="">Select Set</option>
+
+<option value="set1.html">SET 1</option>
+<option value="set2.html">SET 2</option>
+<option value="set3.html">SET 3</option>
+<option value="set4.html">SET 4</option>
+<option value="set5.html">SET 5</option>
+<option value="set6.html">SET 6</option>
+<option value="set7.html">SET 7</option>
+<option value="set8.html">SET 8</option>
+<option value="set9.html">SET 9</option>
+<option value="set10.html">SET 10</option>
+
+</select>
+
+<button onclick="startExam()">
+Start Examination
+</button>
+
+</div>
+
+<script>
+
+function startExam(){
+
+let name=document.getElementById("name").value;
+let set=document.getElementById("examSet").value;
+
+if(name==""){
+alert("Enter Student Name");
+return;
+}
+
+if(set==""){
+alert("Select Exam Set");
+return;
+}
+
+localStorage.setItem("studentName",name);
+
+window.location.href=set;
+
+}
+
+</script>
+
+</body>
+</html>
