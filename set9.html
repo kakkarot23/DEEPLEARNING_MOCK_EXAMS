@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHATECH - Chapter 4 Written Examination</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f6f9;
+}
+.header{
+    background:#0d6efd;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+.student-box{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+.student-box input{
+    width:100%;
+    padding:12px;
+    font-size:16px;
+}
+.question{
+    background:white;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+.question h3{
+    margin-top:0;
+    color:#003366;
+}
+textarea{
+    width:100%;
+    min-height:120px;
+    padding:10px;
+    font-size:15px;
+}
+.submit-btn{
+    background:#28a745;
+    color:white;
+    border:none;
+    padding:15px 40px;
+    border-radius:8px;
+    font-size:18px;
+    cursor:pointer;
+}
+.submit-btn:hover{
+    background:#1e7e34;
+}
+.footer{
+    text-align:center;
+    margin:30px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<h1>SHATECH WRITTEN EXAMINATION</h1>
+<h2>Chapter 4 - Optimization for Training Deep Models</h2>
+<h3>Total Questions: 75</h3>
+</div>
+
+<div class="container">
+
+<div class="student-box">
+<label><b>Student Name</b></label>
+<input type="text" id="studentName" placeholder="Enter Student Name">
+</div>
+
+<div id="questions"></div>
+
+<div class="footer">
+<button class="submit-btn" onclick="downloadPDF()">
+Submit & Download PDF
+</button>
+</div>
+
+</div>
+
+<script>
+
+const questions = [
+
+"Define optimization in deep learning.",
+"Differentiate optimization and generalization.",
+"What is empirical risk minimization?",
+"Why is empirical risk minimization important?",
+"What is a surrogate loss function?",
+"Why do we use differentiable loss functions?",
+"Give examples of surrogate loss functions.",
+"Differentiate classification error and cross-entropy loss.",
+"Explain batch learning.",
+"Explain minibatch learning.",
+"Explain online learning.",
+"Compare batch, minibatch, and online learning.",
+"Why is minibatch training commonly used?",
+"What is an epoch?",
+"How do minibatches improve computational efficiency?",
+
+"What is ill-conditioning?",
+"How does the Hessian matrix relate to ill-conditioning?",
+"Why does gradient descent bounce in high-curvature directions?",
+"What problems are caused by ill-conditioning?",
+"What is a local minimum?",
+"Why are local minima not the biggest problem in deep learning?",
+"Explain non-identifiability in neural networks.",
+"What are saddle points?",
+"How do saddle points differ from local minima?",
+"Why are saddle points more common in high-dimensional spaces?",
+"How does gradient descent behave near saddle points?",
+"What are cliffs in optimization?",
+"Explain exploding gradients.",
+"Why are exploding gradients common in RNNs?",
+"What are vanishing gradients?",
+"Why do gradients vanish in deep networks?",
+"What are long-term dependencies in RNNs?",
+"Explain contractive dynamics.",
+"Explain the relationship between contractive dynamics and vanishing gradients.",
+"List methods used to overcome vanishing gradients.",
+
+"What is gradient clipping?",
+"Why is gradient clipping required?",
+"Explain norm clipping.",
+"Write the norm clipping formula.",
+"Explain element-wise clipping.",
+"Compare norm clipping and element-wise clipping.",
+
+"Write the gradient descent update equation.",
+"What is stochastic gradient descent (SGD)?",
+"Write the SGD update rule.",
+"Why must the learning rate decay during SGD?",
+"Explain momentum optimization.",
+"What is the purpose of the momentum coefficient?",
+"Write the standard momentum equations.",
+"Explain Nesterov momentum.",
+"How does Nesterov momentum differ from standard momentum?",
+"What advantages does Nesterov momentum provide?",
+
+"What is AdaGrad?",
+"Explain the AdaGrad update rule.",
+"Why is AdaGrad useful for infrequent parameters?",
+"What is the main limitation of AdaGrad?",
+"What is RMSprop?",
+"How does RMSprop solve AdaGrad’s problem?",
+"Write the RMSprop update equation.",
+
+"What is Adam optimization?",
+"Explain first moment estimation in Adam.",
+"Explain second moment estimation in Adam.",
+"Why are bias corrections required in Adam?",
+"Write the Adam parameter update equation.",
+"How does Adam combine momentum and RMSprop?",
+"Why is Adam widely used in deep learning?",
+"Compare SGD, Momentum, RMSprop and Adam.",
+
+"What is parameter initialization?",
+"Why is parameter initialization important?",
+"What problems occur with poor initialization?",
+"Explain Xavier initialization.",
+"Explain He initialization.",
+"Why is He initialization suitable for ReLU networks?",
+"What is convergence in optimization?",
+"How does learning rate affect convergence?",
+"What is the role of optimization in training deep models?",
+"Summarize the major optimization challenges and solutions in deep learning."
+
+];
+
+const container = document.getElementById("questions");
+
+questions.forEach((q,index)=>{
+
+container.innerHTML += `
+<div class="question">
+<h3>Q${index+1}. ${q}</h3>
+<textarea id="ans${index+1}"
+placeholder="Write your answer here..."
+onkeyup="saveAnswer(${index+1})"></textarea>
+</div>
+`;
+
+});
+
+window.onload = function(){
+
+document.getElementById("studentName").value =
+localStorage.getItem("studentName") || "";
+
+for(let i=1;i<=questions.length;i++){
+
+let saved = localStorage.getItem("ans"+i);
+
+if(saved){
+document.getElementById("ans"+i).value = saved;
+}
+
+}
+
+};
+
+document.getElementById("studentName")
+.addEventListener("keyup",function(){
+
+localStorage.setItem(
+"studentName",
+this.value
+);
+
+});
+
+function saveAnswer(id){
+
+localStorage.setItem(
+"ans"+id,
+document.getElementById("ans"+id).value
+);
+
+}
+
+async function downloadPDF(){
+
+const { jsPDF } = window.jspdf;
+const doc = new jsPDF();
+
+let y = 20;
+
+doc.setFontSize(18);
+doc.text("SHATECH WRITTEN EXAMINATION",20,y);
+
+y+=10;
+doc.setFontSize(14);
+doc.text("Chapter 4 - Optimization for Training Deep Models",20,y);
+
+y+=10;
+
+doc.text(
+"Student: " +
+document.getElementById("studentName").value,
+20,y
+);
+
+y+=15;
+
+for(let i=0;i<questions.length;i++){
+
+let q = "Q"+(i+1)+": "+questions[i];
+let a = "Answer: " +
+document.getElementById("ans"+(i+1)).value;
+
+let qLines = doc.splitTextToSize(q,170);
+doc.text(qLines,10,y);
+y += qLines.length*7;
+
+let aLines = doc.splitTextToSize(a,170);
+doc.text(aLines,10,y);
+y += aLines.length*7+10;
+
+if(y>260){
+doc.addPage();
+y=20;
+}
+
+}
+
+doc.save(
+(document.getElementById("studentName").value || "Student")
++"_Optimization_Exam.pdf"
+);
+
+}
+
+</script>
+
+</body>
+</html>
