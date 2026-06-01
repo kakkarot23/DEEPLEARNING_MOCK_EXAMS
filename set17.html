@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optimization for Training Deep Models - MCQ Exam</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+padding:20px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 15px rgba(0,0,0,0.15);
+}
+
+h1{
+text-align:center;
+color:#2c3e50;
+margin-bottom:20px;
+}
+
+.timer{
+text-align:right;
+font-size:22px;
+font-weight:bold;
+color:red;
+margin-bottom:20px;
+}
+
+.question{
+border:1px solid #ddd;
+padding:15px;
+margin-bottom:15px;
+border-radius:8px;
+background:#fafafa;
+}
+
+.question h3{
+margin-bottom:10px;
+color:#34495e;
+}
+
+.option{
+margin:8px 0;
+}
+
+.option label{
+cursor:pointer;
+}
+
+button{
+display:block;
+margin:20px auto;
+padding:12px 25px;
+background:#3498db;
+color:white;
+border:none;
+border-radius:5px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#2980b9;
+}
+
+#report{
+display:none;
+margin-top:20px;
+padding:20px;
+border-radius:8px;
+background:#eef8ff;
+}
+
+.correct{
+color:green;
+font-weight:bold;
+}
+
+.wrong{
+color:red;
+font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>Chapter 4 - Optimization for Training Deep Models</h1>
+
+<div class="timer">
+Time Left: <span id="time">30:00</span>
+</div>
+
+<form id="quizForm"></form>
+
+<button type="button" onclick="submitExam()">Submit Exam</button>
+
+<div id="report"></div>
+
+</div>
+
+<script>
+
+const questions=[
+
+{
+q:"1. Gradient Descent Update Rule",
+options:[
+"θ ← θ − η∇θJ(θ)",
+"θ ← θ + η∇θJ(θ)",
+"θ ← ηθ",
+"θ ← J(θ)"
+],
+answer:0
+},
+
+{
+q:"2. SGD Update Rule",
+options:[
+"θ ← θ − ηĝ",
+"θ ← θ + ηĝ",
+"θ ← θ²",
+"θ ← ηθ"
+],
+answer:0
+},
+
+{
+q:"3. η Represents",
+options:[
+"Learning Rate",
+"Momentum",
+"Gradient",
+"Weight"
+],
+answer:0
+},
+
+{
+q:"4. Standard Momentum Formula",
+options:[
+"v ← αv − η∇θJ(θ)",
+"v ← ηv",
+"v ← α + η",
+"v ← g²"
+],
+answer:0
+},
+
+{
+q:"5. Momentum Parameter",
+options:[
+"α",
+"η",
+"ρ",
+"ϵ"
+],
+answer:0
+},
+
+{
+q:"6. Momentum Weight Update",
+options:[
+"θ ← θ + v",
+"θ ← θ − v",
+"θ ← ηv",
+"θ ← αv"
+],
+answer:0
+},
+
+{
+q:"7. Nesterov Lookahead",
+options:[
+"θlookahead = θ + αv",
+"θlookahead = θ − αv",
+"θlookahead = αθ",
+"θlookahead = ηθ"
+],
+answer:0
+},
+
+{
+q:"8. Nesterov Gradient Evaluation",
+options:[
+"∇θJ(θlookahead)",
+"∇θJ(θ)",
+"∇θJ(v)",
+"∇θJ(η)"
+],
+answer:0
+},
+
+{
+q:"9. AdaGrad Accumulator",
+options:[
+"r ← r + g²",
+"r ← r + g",
+"r ← ηg",
+"r ← αg"
+],
+answer:0
+},
+
+{
+q:"10. AdaGrad Update",
+options:[
+"θ ← θ − η/(√r+ϵ) g",
+"θ ← θ + ηg",
+"θ ← rη",
+"θ ← θ²"
+],
+answer:0
+},
+
+{
+q:"11. RMSProp Accumulator",
+options:[
+"r ← ρr + (1−ρ)g²",
+"r ← r + g²",
+"r ← ηg",
+"r ← αg"
+],
+answer:0
+},
+
+{
+q:"12. RMSProp Uses",
+options:[
+"Moving Average",
+"Fixed Average",
+"No Average",
+"Random Average"
+],
+answer:0
+},
+
+{
+q:"13. Adam First Moment",
+options:[
+"s ← ρ₁s + (1−ρ₁)g",
+"r ← ρ₂r + g²",
+"θ ← θ−ηg",
+"v ← αv"
+],
+answer:0
+},
+
+{
+q:"14. Adam Second Moment",
+options:[
+"r ← ρ₂r + (1−ρ₂)g²",
+"r ← r+g",
+"r ← ηg",
+"r ← αg"
+],
+answer:0
+},
+
+{
+q:"15. Adam Bias Corrected First Moment",
+options:[
+"ŝ=s/(1−ρ₁ᵗ)",
+"ŝ=sρ₁",
+"ŝ=s²",
+"ŝ=s+ρ₁"
+],
+answer:0
+},
+
+{
+q:"16. Adam Bias Corrected Second Moment",
+options:[
+"r̂=r/(1−ρ₂ᵗ)",
+"r̂=rρ₂",
+"r̂=r²",
+"r̂=r+ρ₂"
+],
+answer:0
+},
+
+{
+q:"17. Adam Update Rule",
+options:[
+"θ←θ−ηŝ/(√r̂+ϵ)",
+"θ←θ+ηg",
+"θ←θ²",
+"θ←ηθ"
+],
+answer:0
+},
+
+{
+q:"18. Gradient Clipping Condition",
+options:[
+"||g|| > v",
+"||g|| < v",
+"||g|| = 0",
+"g=v²"
+],
+answer:0
+},
+
+{
+q:"19. Norm Clipping Formula",
+options:[
+"g ← (v/||g||)g",
+"g ← g²",
+"g ← ηg",
+"g ← αg"
+],
+answer:0
+},
+
+{
+q:"20. Gradient Clipping Prevents",
+options:[
+"Exploding Gradients",
+"Overfitting",
+"Underfitting",
+"Dropout"
+],
+answer:0
+},
+
+{
+q:"21. Xavier Initialization",
+options:[
+"Wij ~ U(-√(6/(nin+nout)), √(6/(nin+nout)))",
+"Wij=0",
+"Wij=1",
+"Wij~N(0,1)"
+],
+answer:0
+},
+
+{
+q:"22. Xavier Initialization Uses",
+options:[
+"Uniform Distribution",
+"Gaussian Distribution",
+"Bernoulli Distribution",
+"Poisson Distribution"
+],
+answer:0
+},
+
+{
+q:"23. He Initialization",
+options:[
+"Wij ~ N(0, 2/nin)",
+"Wij~U(0,1)",
+"Wij=0",
+"Wij=1"
+],
+answer:0
+},
+
+{
+q:"24. He Initialization Designed For",
+options:[
+"ReLU",
+"Sigmoid",
+"Softmax",
+"Tanh"
+],
+answer:0
+},
+
+{
+q:"25. Bias Initialization Usually",
+options:[
+"0",
+"10",
+"100",
+"-10"
+],
+answer:0
+},
+
+{
+q:"26. Ill-Conditioning Caused By",
+options:[
+"Different Hessian Eigenvalues",
+"Dropout",
+"Bagging",
+"Softmax"
+],
+answer:0
+},
+
+{
+q:"27. Saddle Point Property",
+options:[
+"Positive and Negative Eigenvalues",
+"Only Positive Eigenvalues",
+"Only Negative Eigenvalues",
+"No Eigenvalues"
+],
+answer:0
+},
+
+{
+q:"28. Vanishing Gradients Become",
+options:[
+"Exponentially Small",
+"Exponentially Large",
+"Constant",
+"Random"
+],
+answer:0
+},
+
+{
+q:"29. Exploding Gradients Become",
+options:[
+"Very Large",
+"Very Small",
+"Zero",
+"Constant"
+],
+answer:0
+},
+
+{
+q:"30. Adam Combines",
+options:[
+"Momentum + RMSProp",
+"SGD + KNN",
+"L1 + L2",
+"MAP + MLE"
+],
+answer:0
+}
+
+];
+
+const form=document.getElementById("quizForm");
+
+questions.forEach((q,index)=>{
+
+let html=`
+<div class="question">
+<h3>${q.q}</h3>
+`;
+
+q.options.forEach((option,i)=>{
+html+=`
+<div class="option">
+<label>
+<input type="radio" name="q${index}" value="${i}">
+${option}
+</label>
+</div>
+`;
+});
+
+html+=`</div>`;
+form.innerHTML+=html;
+
+});
+
+let totalSeconds=1800;
+
+const timer=setInterval(()=>{
+
+totalSeconds--;
+
+const minutes=Math.floor(totalSeconds/60);
+const seconds=totalSeconds%60;
+
+document.getElementById("time").innerHTML=
+String(minutes).padStart(2,'0')+":"+
+String(seconds).padStart(2,'0');
+
+if(totalSeconds<=0){
+clearInterval(timer);
+submitExam();
+}
+
+},1000);
+
+function submitExam(){
+
+clearInterval(timer);
+
+let score=0;
+let review="";
+
+questions.forEach((q,index)=>{
+
+const selected=document.querySelector(
+`input[name="q${index}"]:checked`
+);
+
+let userAnswer=-1;
+
+if(selected){
+userAnswer=parseInt(selected.value);
+}
+
+if(userAnswer===q.answer){
+
+score++;
+
+review+=`
+<p class="correct">
+Q${index+1} ✓ Correct
+</p>
+`;
+
+}else{
+
+review+=`
+<p class="wrong">
+Q${index+1} ✗ Wrong |
+Correct Answer:
+${q.options[q.answer]}
+</p>
+`;
+
+}
+
+});
+
+const percentage=
+((score/questions.length)*100).toFixed(2);
+
+const result=
+percentage>=50 ? "PASS" : "FAIL";
+
+document.getElementById("report").style.display="block";
+
+document.getElementById("report").innerHTML=`
+
+<h2>Exam Report</h2>
+
+<p><b>Total Questions:</b> ${questions.length}</p>
+
+<p><b>Correct Answers:</b> ${score}</p>
+
+<p><b>Wrong Answers:</b> ${questions.length-score}</p>
+
+<p><b>Percentage:</b> ${percentage}%</p>
+
+<p><b>Result:</b> ${result}</p>
+
+<hr>
+
+<h3>Answer Review</h3>
+
+${review}
+
+`;
+
+window.scrollTo(0,document.body.scrollHeight);
+
+}
+
+</script>
+
+</body>
+</html>
