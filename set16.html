@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regularization Formula MCQ Exam</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+padding:20px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+h1{
+text-align:center;
+margin-bottom:20px;
+color:#2c3e50;
+}
+
+.timer{
+text-align:right;
+font-size:20px;
+font-weight:bold;
+color:red;
+margin-bottom:20px;
+}
+
+.question{
+padding:15px;
+margin-bottom:15px;
+border:1px solid #ddd;
+border-radius:8px;
+background:#fafafa;
+}
+
+.question h3{
+margin-bottom:10px;
+}
+
+.option{
+margin:8px 0;
+}
+
+button{
+padding:12px 25px;
+background:#3498db;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+font-size:16px;
+}
+
+button:hover{
+background:#2980b9;
+}
+
+#report{
+display:none;
+margin-top:20px;
+padding:20px;
+border-radius:10px;
+background:#eef7ff;
+}
+
+.correct{
+color:green;
+font-weight:bold;
+}
+
+.wrong{
+color:red;
+font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>Chapter 3 - Regularization Formula MCQ Exam</h1>
+
+<div class="timer">
+Time Left: <span id="time">30:00</span>
+</div>
+
+<form id="quizForm"></form>
+
+<center>
+<button type="button" onclick="submitExam()">Submit Exam</button>
+</center>
+
+<div id="report"></div>
+
+</div>
+
+<script>
+
+const questions=[
+
+{
+q:"1. L2 Regularization Cost Function",
+options:[
+"J̃(w)=J(w)+(α/2)||w||²",
+"J(w)+α||w||₁",
+"MSE=Bias²+Var",
+"θ←θ−ηg"
+],
+answer:0
+},
+
+{
+q:"2. L2 Regularization is also called",
+options:[
+"Weight Decay",
+"Dropout",
+"Bagging",
+"Early Stopping"
+],
+answer:0
+},
+
+{
+q:"3. L2 Regularization Prior",
+options:[
+"Gaussian Prior",
+"Laplace Prior",
+"Uniform Prior",
+"Bernoulli Prior"
+],
+answer:0
+},
+
+{
+q:"4. Linear Regression with L2",
+options:[
+"w=(XᵀX+αI)⁻¹Xᵀy",
+"w=Xᵀy",
+"w=Xy",
+"w=(XXᵀ)⁻¹"
+],
+answer:0
+},
+
+{
+q:"5. L1 Regularization Formula",
+options:[
+"J(w)+α||w||₁",
+"J(w)+α||w||²",
+"MSE",
+"Cross Entropy"
+],
+answer:0
+},
+
+{
+q:"6. Expanded L1 Formula",
+options:[
+"J(w)+αΣ|wi|",
+"J(w)+αΣwi²",
+"MSE",
+"KL"
+],
+answer:0
+},
+
+{
+q:"7. L1 Regularization Prior",
+options:[
+"Laplace Prior",
+"Gaussian Prior",
+"Uniform Prior",
+"Normal Prior"
+],
+answer:0
+},
+
+{
+q:"8. L1 Produces",
+options:[
+"Sparse Solutions",
+"Dense Solutions",
+"Overfitting",
+"Noise"
+],
+answer:0
+},
+
+{
+q:"9. L2 Produces",
+options:[
+"Dense Weights",
+"Sparse Weights",
+"Zero Weights",
+"Random Weights"
+],
+answer:0
+},
+
+{
+q:"10. L2 Gradient",
+options:[
+"2w",
+"sign(w)",
+"w²",
+"1/w"
+],
+answer:0
+},
+
+{
+q:"11. L1 Gradient",
+options:[
+"sign(w)",
+"2w",
+"w²",
+"0"
+],
+answer:0
+},
+
+{
+q:"12. Dropout Probability",
+options:[
+"p",
+"α",
+"η",
+"λ"
+],
+answer:0
+},
+
+{
+q:"13. Dropout Inference Rule",
+options:[
+"Multiply weights by p",
+"Divide weights by p",
+"Add p",
+"Subtract p"
+],
+answer:0
+},
+
+{
+q:"14. Dropout Trains",
+options:[
+"Many Subnetworks",
+"One Neuron",
+"Only Output Layer",
+"No Layers"
+],
+answer:0
+},
+
+{
+q:"15. Early Stopping Trigger",
+options:[
+"Validation Error Increases",
+"Training Error Decreases",
+"Accuracy Increases",
+"Loss Becomes Zero"
+],
+answer:0
+},
+
+{
+q:"16. Early Stopping Keeps",
+options:[
+"Best Validation Parameters",
+"Last Parameters",
+"Random Parameters",
+"Initial Parameters"
+],
+answer:0
+},
+
+{
+q:"17. Data Augmentation Example",
+options:[
+"Random Crop",
+"Deleting Data",
+"Removing Labels",
+"Bagging"
+],
+answer:0
+},
+
+{
+q:"18. Data Augmentation Example",
+options:[
+"Horizontal Flip",
+"Gradient Clipping",
+"Weight Decay",
+"Dropout"
+],
+answer:0
+},
+
+{
+q:"19. Data Augmentation Example",
+options:[
+"Rotation",
+"L1",
+"L2",
+"MAP"
+],
+answer:0
+},
+
+{
+q:"20. Noise on Inputs Equivalent To",
+options:[
+"Gradient Norm Penalty",
+"Dropout",
+"Bagging",
+"SGD"
+],
+answer:0
+},
+
+{
+q:"21. Noise on Weights Encourages",
+options:[
+"Weight Robustness",
+"Overfitting",
+"Memorization",
+"Instability"
+],
+answer:0
+},
+
+{
+q:"22. Parameter Sharing Example",
+options:[
+"Convolutional Networks",
+"Linear Regression",
+"KNN",
+"SVM"
+],
+answer:0
+},
+
+{
+q:"23. Shared Kernel Benefit",
+options:[
+"Fewer Parameters",
+"More Parameters",
+"No Learning",
+"Random Learning"
+],
+answer:0
+},
+
+{
+q:"24. Sparse Representation Penalty",
+options:[
+"L1 on Hidden Units",
+"L2 on Output",
+"MSE",
+"KL"
+],
+answer:0
+},
+
+{
+q:"25. Bagging Full Form",
+options:[
+"Bootstrap Aggregating",
+"Batch Aggregation",
+"Bias Aggregation",
+"Bayesian Aggregation"
+],
+answer:0
+},
+
+{
+q:"26. Bagging Prediction",
+options:[
+"Average Predictions",
+"Multiply Predictions",
+"Ignore Predictions",
+"Random Predictions"
+],
+answer:0
+},
+
+{
+q:"27. Ensemble Benefit",
+options:[
+"Reduce Variance",
+"Increase Bias",
+"Increase Error",
+"Reduce Data"
+],
+answer:0
+},
+
+{
+q:"28. Multi Task Learning Architecture",
+options:[
+"Shared Lower Layers",
+"Separate Networks",
+"No Hidden Layers",
+"No Output Layers"
+],
+answer:0
+},
+
+{
+q:"29. Adversarial Example",
+options:[
+"Small Perturbation Causes Error",
+"Large Dataset",
+"Extra Layer",
+"Regular Weight"
+],
+answer:0
+},
+
+{
+q:"30. Adversarial Training Goal",
+options:[
+"Improve Robustness",
+"Increase Overfitting",
+"Reduce Dataset",
+"Remove Features"
+],
+answer:0
+}
+
+];
+
+const form=document.getElementById("quizForm");
+
+questions.forEach((q,index)=>{
+
+let html=`
+<div class="question">
+<h3>${q.q}</h3>
+`;
+
+q.options.forEach((opt,i)=>{
+html+=`
+<div class="option">
+<label>
+<input type="radio" name="q${index}" value="${i}">
+${opt}
+</label>
+</div>
+`;
+});
+
+html+=`</div>`;
+form.innerHTML+=html;
+});
+
+let totalSeconds=1800;
+
+const timer=setInterval(()=>{
+totalSeconds--;
+
+let min=Math.floor(totalSeconds/60);
+let sec=totalSeconds%60;
+
+document.getElementById("time").innerHTML=
+String(min).padStart(2,'0') + ":" +
+String(sec).padStart(2,'0');
+
+if(totalSeconds<=0){
+clearInterval(timer);
+submitExam();
+}
+},1000);
+
+function submitExam(){
+
+clearInterval(timer);
+
+let score=0;
+let review="";
+
+questions.forEach((q,index)=>{
+
+const selected=document.querySelector(
+`input[name="q${index}"]:checked`
+);
+
+let user=-1;
+
+if(selected){
+user=parseInt(selected.value);
+}
+
+if(user===q.answer){
+
+score++;
+
+review+=`
+<p class="correct">
+Q${index+1} ✓ Correct
+</p>
+`;
+
+}else{
+
+review+=`
+<p class="wrong">
+Q${index+1} ✗ Wrong |
+ Correct Answer:
+ ${q.options[q.answer]}
+</p>
+`;
+}
+
+});
+
+const percent=
+((score/questions.length)*100).toFixed(2);
+
+const result=
+percent>=50 ? "PASS" : "FAIL";
+
+document.getElementById("report").style.display="block";
+
+document.getElementById("report").innerHTML=`
+<h2>Exam Report</h2>
+
+<p><b>Total Questions:</b> ${questions.length}</p>
+
+<p><b>Correct:</b> ${score}</p>
+
+<p><b>Wrong:</b> ${questions.length-score}</p>
+
+<p><b>Percentage:</b> ${percent}%</p>
+
+<p><b>Result:</b> ${result}</p>
+
+<hr>
+
+<h3>Answer Review</h3>
+
+${review}
+`;
+
+window.scrollTo(0,document.body.scrollHeight);
+
+}
+
+</script>
+
+</body>
+</html>
