@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ML Formula MCQ Exam</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f6f9;
+    margin:0;
+    padding:20px;
+}
+.container{
+    max-width:1000px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+h1{
+    text-align:center;
+    color:#2c3e50;
+}
+.timer{
+    text-align:right;
+    font-size:20px;
+    color:red;
+    font-weight:bold;
+}
+.question{
+    margin:20px 0;
+    padding:15px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+.option{
+    margin:8px 0;
+}
+button{
+    background:#3498db;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:5px;
+    cursor:pointer;
+}
+button:hover{
+    background:#2980b9;
+}
+.report{
+    display:none;
+    margin-top:20px;
+    padding:20px;
+    border-radius:8px;
+    background:#ecf0f1;
+}
+.correct{
+    color:green;
+}
+.wrong{
+    color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Machine Learning Formula MCQ Exam</h1>
+
+<div class="timer">
+Time Left: <span id="time">60:00</span>
+</div>
+
+<form id="examForm"></form>
+
+<center>
+<button onclick="submitExam()">Submit Exam</button>
+</center>
+
+<div class="report" id="report"></div>
+
+</div>
+
+<script>
+
+const questions = [
+
+{
+q:"1. Linear Regression Formula",
+options:[
+"ŷ = wᵀx",
+"σ(a)=1/(1+e⁻ᵃ)",
+"max(0,a)",
+"θ←θ−ηg"
+],
+answer:0
+},
+
+{
+q:"2. Mean Squared Error (MSE)",
+options:[
+"E[(θ̂−θ)²]",
+"1/m Σ(ŷ−y)²",
+"argmax p(x)",
+"softmax(a)"
+],
+answer:1
+},
+
+{
+q:"3. Bias Formula",
+options:[
+"E[θ̂]−θ",
+"E[θ̂²]−E[θ̂]²",
+"θ←θ−ηg",
+"σ(a)"
+],
+answer:0
+},
+
+{
+q:"4. Variance Formula",
+options:[
+"E[θ̂²]−E[θ̂]²",
+"E[θ̂]−θ",
+"argmaxθ p(x|θ)",
+"v←αv−ηg"
+],
+answer:0
+},
+
+{
+q:"5. Bias Variance Relation",
+options:[
+"MSE=Bias²+Var",
+"Var=Bias²",
+"MSE=Var",
+"MSE=Bias"
+],
+answer:0
+},
+
+{
+q:"6. Sigmoid Function",
+options:[
+"σ(a)=1/(1+e⁻ᵃ)",
+"max(0,a)",
+"tanh(a)",
+"softmax(a)"
+],
+answer:0
+},
+
+{
+q:"7. ReLU Function",
+options:[
+"max(0,a)",
+"σ(a)",
+"tanh(a)",
+"argmaxθ"
+],
+answer:0
+},
+
+{
+q:"8. Softmax Function",
+options:[
+"eᵃⁱ / Σeᵃʲ",
+"max(0,a)",
+"θ←θ−ηg",
+"wᵀx"
+],
+answer:0
+},
+
+{
+q:"9. Chain Rule",
+options:[
+"∂z/∂x=(∂z/∂y)(∂y/∂x)",
+"σ(a)",
+"max(0,a)",
+"MSE"
+],
+answer:0
+},
+
+{
+q:"10. L2 Regularization",
+options:[
+"J(w)+λ||w||²",
+"J(w)+λ||w||₁",
+"σ(a)",
+"softmax(a)"
+],
+answer:0
+},
+
+{
+q:"11. L1 Regularization",
+options:[
+"J(w)+λ||w||₁",
+"J(w)+λ||w||²",
+"MSE",
+"Adam"
+],
+answer:0
+},
+
+{
+q:"12. MLE Formula",
+options:[
+"argmaxθ p(x;θ)",
+"argmaxθ [logp(x|θ)+logp(θ)]",
+"max(0,a)",
+"θ←θ−ηg"
+],
+answer:0
+},
+
+{
+q:"13. MAP Formula",
+options:[
+"argmaxθ [logp(x|θ)+logp(θ)]",
+"argmaxθ p(x;θ)",
+"softmax(a)",
+"σ(a)"
+],
+answer:0
+},
+
+{
+q:"14. SGD Update",
+options:[
+"θ←θ−ηg",
+"v←αv−ηg",
+"softmax(a)",
+"wᵀx"
+],
+answer:0
+},
+
+{
+q:"15. Momentum Update",
+options:[
+"v←αv−ηg , θ←θ+v",
+"θ←θ−ηg",
+"σ(a)",
+"MSE"
+],
+answer:0
+},
+
+{
+q:"16. CNN Convolution",
+options:[
+"(I*K)[i,j]",
+"σ(a)",
+"θ←θ−ηg",
+"softmax(a)"
+],
+answer:0
+},
+
+{
+q:"17. RNN Hidden State",
+options:[
+"h(t)=tanh(b+Wh(t−1)+Ux(t))",
+"σ(a)",
+"softmax(a)",
+"MSE"
+],
+answer:0
+},
+
+{
+q:"18. LSTM Cell State",
+options:[
+"c(t)=f(t)⊙c(t−1)+i(t)⊙ĉ(t)",
+"h(t)=tanh(a)",
+"σ(a)",
+"softmax(a)"
+],
+answer:0
+},
+
+{
+q:"19. Adam First Moment",
+options:[
+"s←ρ₁s+(1−ρ₁)g",
+"r←ρ₂r+(1−ρ₂)g²",
+"θ←θ−ηg",
+"wᵀx"
+],
+answer:0
+},
+
+{
+q:"20. Adam Second Moment",
+options:[
+"r←ρ₂r+(1−ρ₂)g²",
+"s←ρ₁s+(1−ρ₁)g",
+"σ(a)",
+"MSE"
+],
+answer:0
+}
+
+];
+
+const form=document.getElementById("examForm");
+
+questions.forEach((q,index)=>{
+let html=`
+<div class="question">
+<b>${q.q}</b><br><br>
+`;
+
+q.options.forEach((op,i)=>{
+html+=`
+<div class="option">
+<label>
+<input type="radio" name="q${index}" value="${i}">
+${op}
+</label>
+</div>
+`;
+});
+
+html+="</div>";
+form.innerHTML+=html;
+});
+
+let totalSeconds=3600;
+
+const timer=setInterval(()=>{
+totalSeconds--;
+
+let min=Math.floor(totalSeconds/60);
+let sec=totalSeconds%60;
+
+document.getElementById("time").innerHTML=
+String(min).padStart(2,'0')+":"+
+String(sec).padStart(2,'0');
+
+if(totalSeconds<=0){
+clearInterval(timer);
+submitExam();
+}
+},1000);
+
+function submitExam(){
+
+clearInterval(timer);
+
+let score=0;
+let review="";
+
+questions.forEach((q,index)=>{
+
+let selected=
+document.querySelector(
+`input[name="q${index}"]:checked`
+);
+
+let user=-1;
+
+if(selected){
+user=parseInt(selected.value);
+}
+
+if(user===q.answer){
+score++;
+review+=`
+<p class='correct'>
+Q${index+1} ✓ Correct
+</p>`;
+}
+else{
+review+=`
+<p class='wrong'>
+Q${index+1} ✗ Wrong |
+ Correct Answer:
+ ${q.options[q.answer]}
+</p>`;
+}
+});
+
+let percent=
+((score/questions.length)*100)
+.toFixed(2);
+
+let result=
+percent>=50?"PASS":"FAIL";
+
+document.getElementById("report").style.display="block";
+
+document.getElementById("report").innerHTML=
+`
+<h2>Exam Report</h2>
+
+<p><b>Total Questions:</b>
+${questions.length}</p>
+
+<p><b>Correct:</b>
+${score}</p>
+
+<p><b>Wrong:</b>
+${questions.length-score}</p>
+
+<p><b>Percentage:</b>
+${percent}%</p>
+
+<p><b>Result:</b>
+${result}</p>
+
+<hr>
+
+<h3>Answer Review</h3>
+
+${review}
+`;
+
+window.scrollTo(0,document.body.scrollHeight);
+}
+
+</script>
+
+</body>
+</html>
