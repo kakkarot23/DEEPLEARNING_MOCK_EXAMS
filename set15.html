@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedforward Deep Networks Formula Exam</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f6f9;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+h1{
+    text-align:center;
+    color:#2c3e50;
+}
+
+.question{
+    border:1px solid #ddd;
+    padding:15px;
+    margin:15px 0;
+    border-radius:8px;
+}
+
+.option{
+    margin:8px 0;
+}
+
+button{
+    background:#3498db;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#2980b9;
+}
+
+#report{
+    display:none;
+    margin-top:20px;
+    background:#ecf0f1;
+    padding:20px;
+    border-radius:10px;
+}
+
+.correct{
+    color:green;
+}
+
+.wrong{
+    color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Feedforward Deep Networks Formula MCQ Exam</h1>
+
+<form id="examForm"></form>
+
+<center>
+<button type="button" onclick="submitExam()">Submit Exam</button>
+</center>
+
+<div id="report"></div>
+
+</div>
+
+<script>
+
+const questions = [
+
+{
+q:"1. Feedforward Network Formula",
+options:[
+"f(x;θ)=b+Vsigmoid(c+Wx)",
+"σ(a)=1/(1+e^-a)",
+"L=-logp(y|x)",
+"max(0,a)"
+],
+answer:0
+},
+
+{
+q:"2. Sigmoid Formula",
+options:[
+"σ(a)=1/(1+e^-a)",
+"tanh(a)",
+"max(0,a)",
+"softmax(a)"
+],
+answer:0
+},
+
+{
+q:"3. Tanh Formula",
+options:[
+"tanh(a)",
+"σ(a)",
+"max(0,a)",
+"e^ai"
+],
+answer:0
+},
+
+{
+q:"4. ReLU Formula",
+options:[
+"max(0,a)",
+"tanh(a)",
+"σ(a)",
+"softmax(a)"
+],
+answer:0
+},
+
+{
+q:"5. Leaky ReLU Formula",
+options:[
+"max(0,a)+αmin(0,a)",
+"max(0,a)",
+"σ(a)",
+"tanh(a)"
+],
+answer:0
+}
+
+/* ADD QUESTIONS 6–30 HERE
+   from the previous question set */
+];
+
+const form=document.getElementById("examForm");
+
+questions.forEach((q,index)=>{
+
+let html=`
+<div class="question">
+<h3>${q.q}</h3>
+`;
+
+q.options.forEach((option,i)=>{
+html+=`
+<div class="option">
+<label>
+<input type="radio" name="q${index}" value="${i}">
+${option}
+</label>
+</div>
+`;
+});
+
+html+=`</div>`;
+form.innerHTML+=html;
+
+});
+
+function submitExam(){
+
+let score=0;
+let review="";
+
+questions.forEach((q,index)=>{
+
+const selected=
+document.querySelector(
+`input[name="q${index}"]:checked`
+);
+
+let user=-1;
+
+if(selected){
+user=parseInt(selected.value);
+}
+
+if(user===q.answer){
+score++;
+
+review+=`
+<p class="correct">
+Q${index+1}: Correct
+</p>
+`;
+}
+else{
+
+review+=`
+<p class="wrong">
+Q${index+1}: Wrong |
+ Correct Answer:
+ ${q.options[q.answer]}
+</p>
+`;
+}
+
+});
+
+const percent=
+((score/questions.length)*100).toFixed(2);
+
+const result=
+percent>=50?"PASS":"FAIL";
+
+document.getElementById("report").style.display="block";
+
+document.getElementById("report").innerHTML=
+`
+<h2>Exam Report</h2>
+
+<p><b>Total Questions:</b>
+${questions.length}</p>
+
+<p><b>Correct:</b>
+${score}</p>
+
+<p><b>Wrong:</b>
+${questions.length-score}</p>
+
+<p><b>Percentage:</b>
+${percent}%</p>
+
+<p><b>Result:</b>
+${result}</p>
+
+<hr>
+
+<h3>Answer Review</h3>
+
+${review}
+`;
+
+window.scrollTo(
+0,
+document.body.scrollHeight
+);
+
+}
+
+</script>
+
+</body>
+</html>
