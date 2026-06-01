@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RNN Formula MCQ Exam</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+padding:20px;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h1{
+text-align:center;
+color:#1565c0;
+margin-bottom:10px;
+}
+
+h3{
+text-align:center;
+margin-bottom:25px;
+color:#555;
+}
+
+.question{
+background:#fafafa;
+padding:15px;
+margin-bottom:20px;
+border-left:5px solid #2196f3;
+border-radius:8px;
+}
+
+.question h4{
+margin-bottom:10px;
+}
+
+.option{
+display:block;
+padding:8px;
+margin:5px 0;
+cursor:pointer;
+}
+
+button{
+background:#2196f3;
+color:white;
+border:none;
+padding:12px 25px;
+font-size:16px;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1565c0;
+}
+
+#result{
+display:none;
+margin-top:30px;
+padding:20px;
+background:#f1f8e9;
+border-radius:8px;
+}
+
+.correct{
+color:green;
+font-weight:bold;
+}
+
+.wrong{
+color:red;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>RECURRENT NEURAL NETWORKS</h1>
+<h3>30 Formula-Based MCQ Examination</h3>
+
+<form id="quizForm"></form>
+
+<center>
+<button type="button" onclick="submitExam()">Submit Exam</button>
+</center>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+const questions = [
+
+{
+q:"1. Dynamical System Formula",
+options:[
+"s(t)=f(s(t−1);θ)",
+"s(t)=x(t)+θ",
+"s(t)=θ²",
+"s(t)=Wx"
+],
+answer:0
+},
+
+{
+q:"2. Recurrent Network with Input",
+options:[
+"s(t)=f(s(t−1),x(t);θ)",
+"s(t)=x(t)+x(t−1)",
+"s(t)=θx",
+"s(t)=Ux"
+],
+answer:0
+},
+
+{
+q:"3. RNN Forward Propagation Pre-Activation",
+options:[
+"a(t)=b+Wh(t−1)+Ux(t)",
+"h(t)=tanh(a(t))",
+"o(t)=Vh(t)",
+"y(t)=softmax(o(t))"
+],
+answer:0
+},
+
+{
+q:"4. Hidden State Formula",
+options:[
+"h(t)=tanh(a(t))",
+"h(t)=softmax(a(t))",
+"h(t)=ReLU(a(t))",
+"h(t)=σ²(a)"
+],
+answer:0
+},
+
+{
+q:"5. Output Layer Formula",
+options:[
+"o(t)=c+Vh(t)",
+"o(t)=Wh(t)",
+"o(t)=Ux(t)",
+"o(t)=x(t)"
+],
+answer:0
+},
+
+{
+q:"6. Prediction Formula",
+options:[
+"ŷ(t)=softmax(o(t))",
+"ŷ(t)=tanh(o(t))",
+"ŷ(t)=ReLU(o(t))",
+"ŷ(t)=Wx"
+],
+answer:0
+},
+
+{
+q:"7. Input-to-Hidden Weights",
+options:[
+"U",
+"W",
+"V",
+"θ"
+],
+answer:0
+},
+
+{
+q:"8. Hidden-to-Hidden Weights",
+options:[
+"W",
+"U",
+"V",
+"c"
+],
+answer:0
+},
+
+{
+q:"9. Hidden-to-Output Weights",
+options:[
+"V",
+"W",
+"U",
+"b"
+],
+answer:0
+},
+
+{
+q:"10. RNN Loss Function",
+options:[
+"L=−Σlog p(y(t)|x(1)...x(t))",
+"L=MSE",
+"L=Bias²",
+"L=Variance"
+],
+answer:0
+},
+
+{
+q:"11. BPTT Means",
+options:[
+"Backpropagation Through Time",
+"Batch Processing Through Time",
+"Bayesian Probability Training",
+"Binary Propagation"
+],
+answer:0
+},
+
+{
+q:"12. Hidden State Gradient Formula",
+options:[
+"∇h(t)L",
+"∇W",
+"∇U",
+"∇V"
+],
+answer:0
+},
+
+{
+q:"13. Vanishing/Exploding Gradients Caused By",
+options:[
+"Product of Jacobians",
+"Pooling",
+"Dropout",
+"Softmax"
+],
+answer:0
+},
+
+{
+q:"14. Spectral Radius Refers To",
+options:[
+"Maximum absolute eigenvalue",
+"Minimum gradient",
+"Learning rate",
+"Weight decay"
+],
+answer:0
+},
+
+{
+q:"15. Spectral Radius > 1 Causes",
+options:[
+"Exploding Gradients",
+"Vanishing Gradients",
+"Stable Flow",
+"No Learning"
+],
+answer:0
+},
+
+{
+q:"16. Spectral Radius < 1 Causes",
+options:[
+"Vanishing Gradients",
+"Exploding Gradients",
+"Stable Flow",
+"Fast Convergence"
+],
+answer:0
+},
+
+{
+q:"17. Spectral Radius = 1 Gives",
+options:[
+"Stable Information Flow",
+"Explosion",
+"Vanishing",
+"Overfitting"
+],
+answer:0
+},
+
+{
+q:"18. Attention Weights Formula",
+options:[
+"softmax(score(hdec,henc))",
+"tanh(score)",
+"ReLU(score)",
+"MSE(score)"
+],
+answer:0
+},
+
+{
+q:"19. LSTM Cell State Formula",
+options:[
+"c(t)=f(t)⊙c(t−1)+i(t)⊙ĉ(t)",
+"h(t)=tanh(c(t))",
+"o(t)=softmax(c(t))",
+"c(t)=Wx"
+],
+answer:0
+},
+
+{
+q:"20. Forget Gate Formula",
+options:[
+"f(t)=σ(bf+Ufx(t)+Wfh(t−1))",
+"f(t)=tanh(x)",
+"f(t)=ReLU(x)",
+"f(t)=softmax(x)"
+],
+answer:0
+},
+
+{
+q:"21. Input Gate Formula",
+options:[
+"i(t)=σ(bi+Uix(t)+Wih(t−1))",
+"i(t)=ReLU(x)",
+"i(t)=softmax(x)",
+"i(t)=MSE"
+],
+answer:0
+},
+
+{
+q:"22. Candidate Cell State Formula",
+options:[
+"ĉ(t)=tanh(bc+Ucx(t)+Wch(t−1))",
+"ĉ(t)=softmax(x)",
+"ĉ(t)=ReLU(x)",
+"ĉ(t)=σ²(x)"
+],
+answer:0
+},
+
+{
+q:"23. Output Gate Formula",
+options:[
+"o(t)=σ(bo+Uox(t)+Woh(t−1))",
+"o(t)=tanh(x)",
+"o(t)=ReLU(x)",
+"o(t)=softmax(x)"
+],
+answer:0
+},
+
+{
+q:"24. LSTM Hidden State Formula",
+options:[
+"h(t)=o(t)⊙tanh(c(t))",
+"h(t)=Wx",
+"h(t)=softmax(c)",
+"h(t)=σ(c)"
+],
+answer:0
+},
+
+{
+q:"25. GRU Update Gate Formula",
+options:[
+"u(t)=σ(bu+Uux(t)+Wuh(t−1))",
+"u(t)=tanh(x)",
+"u(t)=softmax(x)",
+"u(t)=ReLU(x)"
+],
+answer:0
+},
+
+{
+q:"26. GRU Reset Gate Formula",
+options:[
+"r(t)=σ(br+Urx(t)+Wrh(t−1))",
+"r(t)=softmax(x)",
+"r(t)=MSE",
+"r(t)=Variance"
+],
+answer:0
+},
+
+{
+q:"27. GRU Candidate Hidden State",
+options:[
+"ĥ(t)=tanh(bh+Uhx(t)+Wh(r(t)⊙h(t−1)))",
+"h(t)=softmax(x)",
+"h(t)=Wx",
+"h(t)=σ(x)"
+],
+answer:0
+},
+
+{
+q:"28. Final GRU Hidden State",
+options:[
+"h(t)=u(t)⊙h(t−1)+(1−u(t))⊙ĥ(t)",
+"h(t)=Wx",
+"h(t)=tanh(x)",
+"h(t)=softmax(x)"
+],
+answer:0
+},
+
+{
+q:"29. Gradient Clipping Formula",
+options:[
+"if ||g||>threshold, g←threshold/||g|| × g",
+"g=g²",
+"g=0",
+"g=ηg"
+],
+answer:0
+},
+
+{
+q:"30. RNN State Formula",
+options:[
+"h(t)=tanh(b+Wh(t−1)+Ux(t))",
+"h(t)=Wx",
+"h(t)=softmax(x)",
+"h(t)=ReLU(x)"
+],
+answer:0
+}
+
+];
+
+const form=document.getElementById("quizForm");
+
+questions.forEach((q,index)=>{
+let html=`
+<div class="question">
+<h4>${q.q}</h4>
+`;
+
+q.options.forEach((option,i)=>{
+html+=`
+<label class="option">
+<input type="radio" name="q${index}" value="${i}">
+${option}
+</label>`;
+});
+
+html+=`</div>`;
+form.innerHTML+=html;
+});
+
+function submitExam(){
+
+let score=0;
+let report="";
+
+questions.forEach((q,index)=>{
+
+const selected=document.querySelector(`input[name="q${index}"]:checked`);
+
+if(selected){
+
+if(Number(selected.value)===q.answer){
+score++;
+report+=`<p class="correct">✔ Q${index+1} Correct</p>`;
+}else{
+report+=`<p class="wrong">✘ Q${index+1} Wrong | Correct Answer: ${q.options[q.answer]}</p>`;
+}
+
+}else{
+report+=`<p class="wrong">✘ Q${index+1} Not Attempted | Correct Answer: ${q.options[q.answer]}</p>`;
+}
+
+});
+
+const percent=((score/questions.length)*100).toFixed(2);
+
+document.getElementById("result").style.display="block";
+
+document.getElementById("result").innerHTML=`
+<h2>Exam Report</h2>
+<h3>Score: ${score}/${questions.length}</h3>
+<h3>Percentage: ${percent}%</h3>
+<hr><br>
+${report}
+`;
+
+window.scrollTo({
+top:document.body.scrollHeight,
+behavior:"smooth"
+});
+
+}
+</script>
+
+</body>
+</html>
