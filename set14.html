@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Machine Learning Basics Formula MCQ Test</title>
+
+<style>
+body{
+font-family:Arial;
+background:#f4f4f4;
+padding:20px;
+}
+
+.container{
+background:white;
+padding:20px;
+border-radius:10px;
+max-width:1100px;
+margin:auto;
+box-shadow:0 0 10px gray;
+}
+
+h1{
+text-align:center;
+}
+
+.question{
+margin:15px 0;
+padding:15px;
+border:1px solid #ddd;
+border-radius:8px;
+}
+
+button{
+background:#007bff;
+color:white;
+border:none;
+padding:12px 20px;
+font-size:16px;
+cursor:pointer;
+border-radius:5px;
+}
+
+button:hover{
+background:#0056b3;
+}
+
+#result{
+margin-top:20px;
+padding:20px;
+background:#eef;
+display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Machine Learning Basics Formula MCQ Exam</h1>
+
+<form id="quiz"></form>
+
+<center>
+<button type="button" onclick="submitQuiz()">Submit Exam</button>
+</center>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+const questions = [
+
+{
+q:"1. L2 Regularization Formula",
+o:["J(w)=MSEtrain+λw⊤w",
+"J(w)+λ||w||1",
+"MSE=Bias²+Var",
+"θ←θ−ηg"],
+a:0
+},
+
+{
+q:"2. Bias Formula",
+o:["E[θ̂]-θ",
+"E[θ̂²]-E[θ̂]²",
+"Var[θ̂]",
+"KL Divergence"],
+a:0
+},
+
+{
+q:"3. Variance Formula",
+o:["E[θ̂²]-E[θ̂]²",
+"E[θ̂]-θ",
+"MSE",
+"MAP"],
+a:0
+},
+
+{
+q:"4. Standard Error Formula",
+o:["SE(θ̂)=√Var[θ̂]",
+"SE=Var",
+"MSE=SE²",
+"E[θ̂]-θ"],
+a:0
+},
+
+{
+q:"5. Mean Squared Error Formula",
+o:[
+"MSE=E[(θ̂−θ)²]=Bias²+Var",
+"Var+SE",
+"E[θ̂]-θ",
+"MLE"
+],
+a:0
+},
+
+{
+q:"6. Sample Mean Formula",
+o:[
+"μ̂=(1/m)Σx(i)",
+"σ²=(1/m)Σ(x−μ)²",
+"MSE",
+"MAP"
+],
+a:0
+},
+
+{
+q:"7. Expected Value of Sample Mean",
+o:[
+"E[μ̂]=μ",
+"E[μ̂]=0",
+"E[μ̂]=σ²",
+"E[μ̂]=MSE"
+],
+a:0
+},
+
+{
+q:"8. Sample Variance (Biased)",
+o:[
+"(1/m)Σ(x(i)-μ̂)²",
+"(1/m-1)Σ(x(i)-μ̂)²",
+"MSE",
+"KL"
+],
+a:0
+},
+
+{
+q:"9. Unbiased Sample Variance",
+o:[
+"(1/(m-1))Σ(x(i)-μ̂)²",
+"(1/m)Σ(x(i)-μ̂)²",
+"Bias²+Var",
+"MLE"
+],
+a:0
+},
+
+{
+q:"10. Consistency Formula",
+o:[
+"lim n→∞ θ̂n → θ",
+"MSE→0",
+"Bias→∞",
+"KL→0"
+],
+a:0
+},
+
+{
+q:"11. Point Estimation",
+o:[
+"θ̂m=g(x1,...,xm)",
+"MLE",
+"MAP",
+"KL"
+],
+a:0
+},
+
+{
+q:"12. MLE Principle",
+o:[
+"argmaxθ p(x;θ)",
+"argminθ p(x)",
+"MSE",
+"Bias"
+],
+a:0
+},
+
+{
+q:"13. Log Likelihood",
+o:[
+"argmax Σ log pmodel(x(i);θ)",
+"argmin MSE",
+"argmax Bias",
+"argmax Variance"
+],
+a:0
+},
+
+{
+q:"14. KL Divergence Formula",
+o:[
+"DKL(pdata||pmodel)",
+"MSE",
+"Variance",
+"Bias"
+],
+a:0
+},
+
+{
+q:"15. MLE Minimizes",
+o:[
+"KL Divergence",
+"Variance",
+"Bias",
+"Standard Error"
+],
+a:0
+},
+
+{
+q:"16. Conditional MLE",
+o:[
+"argmax Σ logP(y(i)|x(i);θ)",
+"MAP",
+"Bayes Rule",
+"MSE"
+],
+a:0
+},
+
+{
+q:"17. Gaussian Regression Log Likelihood",
+o:[
+"-1/(2σ²)||y−ŷ||² + c",
+"MSE",
+"KL",
+"Bias"
+],
+a:0
+},
+
+{
+q:"18. Maximizing Likelihood in Regression Equals",
+o:[
+"Minimizing MSE",
+"Maximizing Bias",
+"Maximizing Variance",
+"KL"
+],
+a:0
+},
+
+{
+q:"19. Bayes Rule",
+o:[
+"p(θ|x)=p(x|θ)p(θ)/p(x)",
+"MSE",
+"KL",
+"Variance"
+],
+a:0
+},
+
+{
+q:"20. Posterior Distribution",
+o:[
+"p(θ|x)",
+"p(x)",
+"p(θ)",
+"MSE"
+],
+a:0
+},
+
+{
+q:"21. Prior Distribution",
+o:[
+"p(θ)",
+"p(x)",
+"p(θ|x)",
+"KL"
+],
+a:0
+},
+
+{
+q:"22. Bayesian Prediction",
+o:[
+"∫p(xnew|θ)p(θ|x)dθ",
+"MSE",
+"Bias",
+"Variance"
+],
+a:0
+},
+
+{
+q:"23. MAP Estimation",
+o:[
+"argmax[logp(x|θ)+logp(θ)]",
+"argmax p(x)",
+"MSE",
+"Variance"
+],
+a:0
+},
+
+{
+q:"24. MAP Equals",
+o:[
+"MLE + Prior",
+"MSE",
+"Bias",
+"Variance"
+],
+a:0
+},
+
+{
+q:"25. MAP with Gaussian Prior",
+o:[
+"logp(x|θ)-λ||θ||²",
+"MSE",
+"KL",
+"Variance"
+],
+a:0
+},
+
+{
+q:"26. MAP is Equivalent To",
+o:[
+"L2 Regularization",
+"L1 Regularization",
+"Dropout",
+"SGD"
+],
+a:0
+},
+
+{
+q:"27. SGD Uses",
+o:[
+"Minibatch Gradient",
+"Full Dataset",
+"No Data",
+"Only Test Data"
+],
+a:0
+},
+
+{
+q:"28. Bias-Variance Tradeoff",
+o:[
+"Simple: High Bias Low Variance",
+"Simple: Low Bias High Variance",
+"Always Equal",
+"None"
+],
+a:0
+},
+
+{
+q:"29. Weight Decay Hyperparameter",
+o:[
+"λ",
+"η",
+"θ",
+"x"
+],
+a:0
+},
+
+{
+q:"30. Generalization Means",
+o:[
+"Good performance on unseen data",
+"Zero training error",
+"High variance",
+"High bias"
+],
+a:0
+}
+
+];
+
+const quiz=document.getElementById("quiz");
+
+questions.forEach((q,index)=>{
+
+let html=`<div class='question'>
+<h3>${q.q}</h3>`;
+
+q.o.forEach((opt,i)=>{
+html+=`
+<label>
+<input type='radio' name='q${index}' value='${i}'>
+${opt}
+</label><br>`;
+});
+
+html+="</div>";
+
+quiz.innerHTML+=html;
+});
+
+function submitQuiz(){
+
+let score=0;
+
+questions.forEach((q,index)=>{
+
+let ans=document.querySelector(`input[name=q${index}]:checked`);
+
+if(ans && Number(ans.value)===q.a)
+score++;
+
+});
+
+let percent=((score/questions.length)*100).toFixed(2);
+
+document.getElementById("result").style.display="block";
+
+document.getElementById("result").innerHTML=`
+<h2>Exam Report</h2>
+<p><b>Total Questions:</b> ${questions.length}</p>
+<p><b>Correct:</b> ${score}</p>
+<p><b>Wrong:</b> ${questions.length-score}</p>
+<p><b>Percentage:</b> ${percent}%</p>
+<p><b>Result:</b> ${percent>=50 ? "PASS" : "FAIL"}</p>
+`;
+
+window.scrollTo(0,document.body.scrollHeight);
+}
+
+</script>
+
+</body>
+</html>
