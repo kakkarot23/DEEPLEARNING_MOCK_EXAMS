@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CNN Formula MCQ Exam - Chapter 5</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+padding:20px;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h1{
+text-align:center;
+color:#0d47a1;
+margin-bottom:10px;
+}
+
+h3{
+text-align:center;
+margin-bottom:20px;
+color:#555;
+}
+
+.question{
+margin-bottom:25px;
+padding:15px;
+background:#fafafa;
+border-left:5px solid #2196f3;
+border-radius:8px;
+}
+
+.question h4{
+margin-bottom:10px;
+}
+
+.option{
+display:block;
+padding:8px;
+margin:5px 0;
+border:1px solid #ddd;
+border-radius:5px;
+cursor:pointer;
+}
+
+.option:hover{
+background:#eef7ff;
+}
+
+button{
+padding:12px 25px;
+background:#2196f3;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-size:16px;
+}
+
+button:hover{
+background:#0b7dda;
+}
+
+#result{
+margin-top:30px;
+padding:20px;
+border-radius:10px;
+display:none;
+}
+
+.correct{
+color:green;
+font-weight:bold;
+}
+
+.wrong{
+color:red;
+font-weight:bold;
+}
+
+.score{
+font-size:24px;
+margin-bottom:15px;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Chapter 5 - Convolutional Networks</h1>
+<h3>30 Formula Based MCQ Examination</h3>
+
+<form id="quizForm"></form>
+
+<center>
+<button onclick="submitExam()">Submit Exam</button>
+</center>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+const questions = [
+
+{
+q:"1. Continuous Convolution Formula",
+options:["s(t)=(x*w)(t)","s(t)=x+w","s(t)=x/w","s(t)=x²+w²"],
+answer:0
+},
+
+{
+q:"2. Continuous Convolution Integral",
+options:["∫x(a)w(t−a)da","∫x(a)+w(a)da","∫x(a)w(a)da","∫x(t)da"],
+answer:0
+},
+
+{
+q:"3. Discrete Convolution Formula",
+options:["s[t]=(x*w)[t]","s[t]=x[t]+w[t]","s[t]=x[t]/w[t]","s[t]=x²[t]"],
+answer:0
+},
+
+{
+q:"4. 2D Convolution Output",
+options:["S[i,j]=(I*K)[i,j]","S[i,j]=I+K","S[i,j]=IK","S[i,j]=I/K"],
+answer:0
+},
+
+{
+q:"5. In CNN Terminology, K Represents",
+options:["Kernel","Input","Output","Pooling"],
+answer:0
+},
+
+{
+q:"6. Output of Convolution is Called",
+options:["Feature Map","Weight Matrix","Gradient","Bias"],
+answer:0
+},
+
+{
+q:"7. Sparse Connectivity Means",
+options:["Each output connects to a small input region","All neurons connected","No connections","Random connections"],
+answer:0
+},
+
+{
+q:"8. Sparse Connectivity Helps",
+options:["Reduce Parameters","Increase Parameters","Increase Overfitting","Remove Features"],
+answer:0
+},
+
+{
+q:"9. Parameter Sharing Means",
+options:["Same Kernel Everywhere","Different Kernel Everywhere","No Kernel","Random Kernel"],
+answer:0
+},
+
+{
+q:"10. Convolution is Equivariant To",
+options:["Translation","Rotation","Scaling","Reflection"],
+answer:0
+},
+
+{
+q:"11. Multi-channel CNN Example",
+options:["RGB Images","Text Only","Audio Only","CSV Files"],
+answer:0
+},
+
+{
+q:"12. Zi,j,k Represents",
+options:["Multi-channel Convolution Output","Pooling Output","Loss Function","Gradient"],
+answer:0
+},
+
+{
+q:"13. Strided Convolution",
+options:["Skips Positions","Adds Padding","Removes Kernel","Adds Noise"],
+answer:0
+},
+
+{
+q:"14. Stride Effect",
+options:["Reduces Output Size","Increases Output Size","No Change","Removes Features"],
+answer:0
+},
+
+{
+q:"15. Valid Padding",
+options:["No Padding","Full Padding","Extra Padding","Random Padding"],
+answer:0
+},
+
+{
+q:"16. Same Padding",
+options:["Output Size Same As Input","Output Larger","Output Smaller","No Output"],
+answer:0
+},
+
+{
+q:"17. Full Padding",
+options:["Maximum Padding","No Padding","Half Padding","Random Padding"],
+answer:0
+},
+
+{
+q:"18. Pooling Purpose",
+options:["Reduce Spatial Dimensions","Increase Parameters","Increase Noise","Increase Memory"],
+answer:0
+},
+
+{
+q:"19. Max Pooling Formula",
+options:["max(I[i+m,j+n])","sum(I)","avg(I)","I²"],
+answer:0
+},
+
+{
+q:"20. Average Pooling Output",
+options:["Average Value","Maximum Value","Minimum Value","Gradient"],
+answer:0
+},
+
+{
+q:"21. Pooling Provides",
+options:["Translation Invariance","More Parameters","Weight Sharing","Gradient Descent"],
+answer:0
+},
+
+{
+q:"22. Typical CNN Structure Begins With",
+options:["Convolution","Softmax","Pooling","Flatten"],
+answer:0
+},
+
+{
+q:"23. CNN Output Layer Usually Uses",
+options:["Softmax","Pooling","ReLU","Convolution"],
+answer:0
+},
+
+{
+q:"24. Early CNN Layers Detect",
+options:["Edges","Objects","Sentences","Labels"],
+answer:0
+},
+
+{
+q:"25. Middle CNN Layers Detect",
+options:["Parts","Pixels","Labels","Loss"],
+answer:0
+},
+
+{
+q:"26. Later CNN Layers Detect",
+options:["Whole Objects","Edges","Colors Only","Noise"],
+answer:0
+},
+
+{
+q:"27. Fourier Transform Convolution",
+options:[
+"Spatial Convolution = Frequency Multiplication",
+"Spatial Addition",
+"Spatial Division",
+"Spatial Pooling"
+],
+answer:0
+},
+
+{
+q:"28. Separable Convolution Uses",
+options:["1D Convolutions","Pooling","Softmax","Dropout"],
+answer:0
+},
+
+{
+q:"29. Im2Col Converts Convolution To",
+options:["Matrix Multiplication","Pooling","Softmax","Dropout"],
+answer:0
+},
+
+{
+q:"30. First Layer CNN Filters Often Resemble",
+options:["Gabor Functions","Linear Regression","Decision Trees","KNN"],
+answer:0
+}
+
+];
+
+const quizForm=document.getElementById("quizForm");
+
+questions.forEach((q,index)=>{
+let html=`
+<div class="question">
+<h4>${q.q}</h4>
+`;
+
+q.options.forEach((option,i)=>{
+html+=`
+<label class="option">
+<input type="radio" name="q${index}" value="${i}">
+ ${option}
+</label>
+`;
+});
+
+html+=`</div>`;
+quizForm.innerHTML+=html;
+});
+
+function submitExam(){
+
+let score=0;
+let report="";
+
+questions.forEach((q,index)=>{
+
+const selected=document.querySelector(`input[name="q${index}"]:checked`);
+
+if(selected){
+
+if(Number(selected.value)===q.answer){
+score++;
+report+=`<p class="correct">✔ Q${index+1} Correct</p>`;
+}else{
+report+=`
+<p class="wrong">
+✘ Q${index+1} Wrong |
+Correct Answer: ${q.options[q.answer]}
+</p>`;
+}
+}else{
+report+=`
+<p class="wrong">
+✘ Q${index+1} Not Attempted |
+Correct Answer: ${q.options[q.answer]}
+</p>`;
+}
+});
+
+const percent=((score/questions.length)*100).toFixed(2);
+
+document.getElementById("result").style.display="block";
+
+document.getElementById("result").innerHTML=`
+<div class="score">
+Score: ${score}/${questions.length}
+<br>
+Percentage: ${percent}%
+</div>
+
+${report}
+`;
+
+window.scrollTo({
+top:document.body.scrollHeight,
+behavior:"smooth"
+});
+}
+</script>
+
+</body>
+</html>
